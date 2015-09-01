@@ -21,6 +21,7 @@
  */
 
 #import "Util.h"
+#import "OrderedDictionary.h"
 #import "ScenePresenterViewController.h"
 #import "ProgramDefines.h"
 #import "ProgramLoadingInfo.h"
@@ -1146,6 +1147,8 @@ replacementString:(NSString*)characters
 
 + (NSArray*) getSubsetOfTheMost:(NSUInteger)N usedBricksInDictionary:(NSDictionary *)brickCountDictionary
 {
+    //NSArray *sortedBricks = [brickCountDictionary keysSortedByValueUsingSelector:@selector(compare:)];
+    
     NSArray *sortedBricks = [brickCountDictionary
                              keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2)
                              {
@@ -1153,8 +1156,10 @@ replacementString:(NSString*)characters
                                  NSNumber* number2 = (NSNumber*)obj2;
                                  if (number1 < number2) {
                                      return NSOrderedDescending;
-                                 }else{
+                                 }else if(number1 > number2){
                                      return NSOrderedAscending;
+                                 }else{
+                                     return NSOrderedSame;
                                  }
                              }];
     
