@@ -74,6 +74,7 @@
 #import "CBMutableCopyContext.h"
 #import "RepeatBrick.h"
 #import "OrderedMapTable.h"
+#import "BrickInsertManager.h"
 #import "BrickMoveManager.h"
 
 @interface ScriptCollectionViewController() <UICollectionViewDelegate,
@@ -143,7 +144,7 @@
 {
     [super viewDidDisappear:animated];
     self.navigationController.interactivePopGestureRecognizer.cancelsTouchesInView = YES;
-    [[BrickMoveManager sharedBrickMoveManager] cleanUp];
+    [[BrickMoveManager sharedInstance] reset];
 }
 
 #pragma mark - actions
@@ -424,13 +425,17 @@ didEndDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                 layout:(UICollectionViewLayout*)collectionViewLayout
 willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    [[BrickMoveManager sharedBrickMoveManager] resetBrickMoveManager];
+    [[BrickMoveManager sharedInstance] reset];
 }
 
 - (BOOL)collectionView:(UICollectionView*)collectionView itemAtIndexPath:(NSIndexPath*)fromIndexPath
     canMoveToIndexPath:(NSIndexPath*)toIndexPath
 {
-    return [[BrickMoveManager sharedBrickMoveManager] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath IsInserting:self.isInsertingBrickMode andObject:self.object];
+    if (self.isInsertingBrickMode) {
+        return [[BrickInsertManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canInsertToIndexPath:toIndexPath andObject:self.object];
+    }
+        
+    return [[BrickMoveManager sharedInstance] collectionView:self.collectionView itemAtIndexPath:fromIndexPath canMoveToIndexPath:toIndexPath andObject:self.object];
 }
 
 
@@ -541,7 +546,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.object.program saveToDisk];
         return;
     }
-
     // empty script list, insert start script and continue to insert the chosen brick
     if (self.object.scriptList.count == 0) {
         StartScript *script = [StartScript new];
@@ -551,7 +555,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
         [self.collectionView reloadData];
         [self.object.program saveToDisk];
     }
-    
+
     NSInteger targetScriptIndex = 0;
     BOOL smallScript = NO;
     CGRect visibleRect = (CGRect){.origin = self.collectionView.contentOffset, .size = self.collectionView.bounds.size};
@@ -580,13 +584,17 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
             index--;
         }
     }
-
     if ((smallScript || self.scrollEnd) && !hasForeverLoop ) {
-           [targetScript.brickList addObject:brick];
+        [targetScript.brickList addObject:brick];
     }else{
-         [targetScript.brickList insertObject:brick atIndex:insertionIndex];
+        [targetScript.brickList insertObject:brick atIndex:insertionIndex];
     }
-
+    // empty script list, insert first brick and continue
+    if (targetScript.brickList.count == 1) {
+        
+        [self insertBrick:brick andIndexPath:[NSIndexPath indexPathForRow:0 inSection:self.object.scriptList.count-1]];
+        return;
+    }
     
     brick.animateInsertBrick = YES;
     
@@ -772,6 +780,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 -(void)deleteSelectedBricks
 {
     [self removeBricksWithIndexPaths:self.selectedIndexPaths];
+    [self setEditing:NO animated:NO];
 }
 
 -(void)turnOnInsertingBrickMode
@@ -807,7 +816,6 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    [self setupToolBar];
 
     if (self.isEditing) {
         self.navigationItem.title = kLocalizedDeletionMenu;
@@ -851,6 +859,7 @@ willBeginDraggingItemAtIndexPath:(NSIndexPath*)indexPath
                          }];
         
     }
+    [self setupToolBar];
 }
 
 
