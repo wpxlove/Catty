@@ -132,7 +132,7 @@ final class CBBackend: CBBackendProtocol {
                     usleep(uduration)
 
                     // now switch back to the main queue for executing the sequence!
-                    dispatch_async(dispatch_get_main_queue(), {
+                    dispatch_async(scheduler.schedulerQueue, {
                         context.jump(numberOfInstructions: numOfInstructionsToJump)
                         scheduler.runNextInstructionOfContext(context)
                     });

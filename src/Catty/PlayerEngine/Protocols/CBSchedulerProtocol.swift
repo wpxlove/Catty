@@ -24,7 +24,7 @@ protocol CBSchedulerProtocol : class {
 
     // properties
     var running:Bool { get }
-
+    var schedulerQueue:dispatch_queue_t! { get }
     // queries
     func isContextScheduled(context: CBScriptContextProtocol) -> Bool
     func startWhenContextsOfSpriteNodeWithName(spriteName: String)

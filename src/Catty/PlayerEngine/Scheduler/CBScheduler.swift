@@ -36,6 +36,7 @@ final class CBScheduler: CBSchedulerProtocol {
     private var _availableWaitQueues = [dispatch_queue_t]()
     private var _availableBufferQueues = [dispatch_queue_t]()
     private var _lastQueueIndex = 0
+    private(set) var schedulerQueue =  dispatch_queue_create("org.catrobat.scheduler.queue", DISPATCH_QUEUE_SERIAL)
 
     // MARK: Static properties
     static let vibrateSerialQueue = dispatch_queue_create("org.catrobat.vibrate.queue", DISPATCH_QUEUE_SERIAL)
@@ -77,7 +78,6 @@ final class CBScheduler: CBSchedulerProtocol {
 
     // MARK: - Scheduling
     func runNextInstructionOfContext(context: CBScriptContextProtocol) {
-        assert(NSThread.currentThread().isMainThread)
         context.state = .Runnable
         runNextInstructionsGroup()
     }
@@ -87,7 +87,6 @@ final class CBScheduler: CBSchedulerProtocol {
     // <<<<<<<<<<<<<<<<<<|>>>>>>>>>>>>>>>>>>
     func runNextInstructionsGroup() {
         // TODO: apply scheduling via StrategyPattern => selects scripts to be scheduled NOW!
-        assert(NSThread.currentThread().isMainThread)
 
         var nextHighPriorityClosures = [CBHighPriorityScheduleElement]()
         var nextClosures = [CBScheduleElement]()
@@ -169,7 +168,7 @@ final class CBScheduler: CBSchedulerProtocol {
             dispatch_async(queue!, {
                 closure(context: context, scheduler: self)
                 self._availableWaitQueues += queue!
-                dispatch_async(dispatch_get_main_queue()) {
+                dispatch_async(self.schedulerQueue) {
                     self.runNextInstructionOfContext(context)
                 }
             })
@@ -194,7 +193,7 @@ final class CBScheduler: CBSchedulerProtocol {
                 }
                 print("preCalculate")
                 self._availableBufferQueues += queue!
-                dispatch_async(dispatch_get_main_queue()) {
+                dispatch_async(self.schedulerQueue) {
                     self.runNextInstructionOfContext(context)
                 }
             })
@@ -209,7 +208,7 @@ final class CBScheduler: CBSchedulerProtocol {
             dispatch_async(queue!, {
                 condition.bufferCondition(context.spriteNode.spriteObject)
                 self._availableBufferQueues += queue!
-                dispatch_async(dispatch_get_main_queue()) {
+                dispatch_async(self.schedulerQueue) {
                     self.runNextInstructionOfContext(context)
                 }
             })
@@ -240,7 +239,9 @@ final class CBScheduler: CBSchedulerProtocol {
         // schedule all start scripts
         _contexts.forEach { if $0 is CBStartScriptContext { scheduleContext($0) } }
         // ... Ready...Steady...Gooooo!! => invoke first instruction!
-        runNextInstructionsGroup()
+        dispatch_async(schedulerQueue, {
+            self.runNextInstructionsGroup()
+        })
     }
 
     func scheduleContext(context: CBScriptContextProtocol) {

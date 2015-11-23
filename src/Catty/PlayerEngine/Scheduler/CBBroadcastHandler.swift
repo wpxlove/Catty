@@ -178,7 +178,7 @@ final class CBBroadcastHandler: CBBroadcastHandlerProtocol {
         _broadcastWaitingContextsQueue.removeValueForKey(waitingContext.id)
         _broadcastWaitingContexts.removeValueForKey(waitingContext.id)
         assert(waitingContext.state == .Waiting) // just to ensure
-        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+        dispatch_async((self.scheduler?.schedulerQueue)!, { [weak self] in
             assert(waitingContext.state == .Waiting) // just to ensure
             waitingContext.state = .Runnable // running again!
             self?.scheduler?.runNextInstructionOfContext(waitingContext)
