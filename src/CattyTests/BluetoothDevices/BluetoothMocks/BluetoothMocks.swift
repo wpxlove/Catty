@@ -130,12 +130,12 @@ class FirmataMock:Firmata{
     override func stringData(string:String){
         receivedString = string
     }
-    override func samplingInterval(intervalMilliseconds:UInt8){
+    override func samplingInterval(intervalMilliseconds:Int){
         
     }
-    override func writePWMValue(value:UInt8, pin:UInt8){
+    override func writePWMValue(value:Int, pin:UInt8){
         receivedPin = pin
-        receivedValue = value
+        receivedValue = UInt8(value)
     }
     override func writePinState(newState: PinState, pin:UInt8){
         receivedPin = pin

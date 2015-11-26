@@ -156,7 +156,7 @@ class Phiro: FirmataDevice,PhiroProtocol {
     
     private func sendAnalogFirmataMessage(pin:Int,value:Int){
         let analogPin:UInt8 = UInt8(checkValue(pin))
-        let value :UInt8 = UInt8(checkValue(value))
+        let value :Int = checkValue(value)
         firmata.writePinMode(PinMode.PWM, pin: analogPin)
         firmata.writePWMValue(value, pin: analogPin)
     }

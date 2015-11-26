@@ -128,11 +128,11 @@ private let MAX_ANALOG_SENSOR_PIN:Int = 5;
     
     func setPWMArduinoPin(PWMpin:Int, value:Int) {
         let pin: UInt8 = UInt8(checkValue(PWMpin))
-        let checkedValue: UInt8 = UInt8(checkValue(value))
+        let checkedValue: Int = checkValue(value)
         if checkDigitalPinCapability(pin, neededMode: PinMode.PWM){
             firmata.writePinMode(PinMode.PWM, pin: pin)
             firmata.writePWMValue(checkedValue, pin: pin)
-            setPortValue(Int(pin), value: Int(checkedValue))
+            setPortValue(Int(pin), value:checkedValue)
         }
     }
     

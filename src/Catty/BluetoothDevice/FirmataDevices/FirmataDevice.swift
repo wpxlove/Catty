@@ -203,9 +203,7 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
                 var newBytes = [UInt8](count: len, repeatedValue: 0)
                 data.getBytes(&newBytes, range: range)
                 let newData = NSData(bytes: newBytes, length: len)
-                //                    println("\(self.classForCoder.description()) writeRawData : packet_\(idx) : \(newData.hexRepresentationWithSpaces(true))")
                 cbPeripheral.writeValue(newData, forCharacteristic: txCharacteristic!, type: writeType)
-                
                 loc += len
                 idx += 1
             }
