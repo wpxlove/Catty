@@ -39,8 +39,12 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(self.sensor !=((PhiroIfLogicBeginBrick*)brick).sensor)
+    if (![brick isKindOfClass:[PhiroIfLogicBeginBrick class]]) {
         return NO;
+    }
+    if(self.sensor !=((PhiroIfLogicBeginBrick*)brick).sensor) {
+        return NO;
+    }
     
     return YES;
 }

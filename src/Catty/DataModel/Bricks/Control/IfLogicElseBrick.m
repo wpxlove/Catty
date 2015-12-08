@@ -61,10 +61,15 @@
 #pragma mark - Compare
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![Util isEqual:self.ifBeginBrick.brickTitle toObject:((IfLogicElseBrick*)brick).ifBeginBrick.brickTitle])
+    if (![brick isKindOfClass:[IfLogicElseBrick class]]) {
         return NO;
-    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfLogicElseBrick*)brick).ifEndBrick.brickTitle])
-        return NO;    
+    }
+    if(![Util isEqual:self.ifBeginBrick.brickTitle toObject:((IfLogicElseBrick*)brick).ifBeginBrick.brickTitle]) {
+        return NO;
+    }
+    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfLogicElseBrick*)brick).ifEndBrick.brickTitle]) {
+        return NO;
+    }
     return YES;
 }
 

@@ -39,8 +39,12 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(self.motor !=((PhiroMotorMoveBackwardBrick*)brick).motor)
+    if (![brick isKindOfClass:[PhiroMotorMoveBackwardBrick class]]) {
         return NO;
+    }
+    if(self.motor !=((PhiroMotorMoveBackwardBrick*)brick).motor) {
+        return NO;
+    }
     if (![self.formula isEqualToFormula:((PhiroMotorMoveBackwardBrick*)brick).formula]) {
         return NO;
     }

@@ -39,6 +39,9 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
+    if (![brick isKindOfClass:[PhiroPlayToneBrick class]]) {
+        return NO;
+    }
     if (![self.durationFormula isEqualToFormula:((PhiroPlayToneBrick*)brick).durationFormula]) {
         return NO;
     }

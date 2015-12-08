@@ -60,6 +60,9 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
+    if (![brick isKindOfClass:[ArduinoSendDigitalValueBrick class]]) {
+        return NO;
+    }
     if (![self.pin isEqualToFormula:((ArduinoSendDigitalValueBrick*)brick).pin]) {
         return NO;
     }

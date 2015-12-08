@@ -47,8 +47,12 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if([self.look isEqualToLook:((SetLookBrick*)brick).look])
+    if (![brick isKindOfClass:[SetLookBrick class]]) {
+        return NO;
+    }
+    if([self.look isEqualToLook:((SetLookBrick*)brick).look]) {
         return YES;
+    }
     return NO;
 }
 

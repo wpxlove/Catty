@@ -46,8 +46,12 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![self.pointedObject.name isEqualToString:((PointToBrick*)brick).pointedObject.name])
+    if (![brick isKindOfClass:[PointToBrick class]]) {
         return NO;
+    }
+    if(![self.pointedObject.name isEqualToString:((PointToBrick*)brick).pointedObject.name]) {
+        return NO;
+    }
     return YES;
 }
 

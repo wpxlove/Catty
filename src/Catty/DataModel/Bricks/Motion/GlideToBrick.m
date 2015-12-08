@@ -93,12 +93,18 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![self.durationInSeconds isEqualToFormula:((GlideToBrick*)brick).durationInSeconds])
+    if (![brick isKindOfClass:[GlideToBrick class]]) {
         return NO;
-    if(![self.xDestination isEqualToFormula:((GlideToBrick*)brick).xDestination])
+    }
+    if(![self.durationInSeconds isEqualToFormula:((GlideToBrick*)brick).durationInSeconds]) {
         return NO;
-    if(![self.yDestination isEqualToFormula:((GlideToBrick*)brick).yDestination])
+    }
+    if(![self.xDestination isEqualToFormula:((GlideToBrick*)brick).xDestination]) {
         return NO;
+    }
+    if(![self.yDestination isEqualToFormula:((GlideToBrick*)brick).yDestination]) {
+        return NO;
+    }
     return YES;
 }
 

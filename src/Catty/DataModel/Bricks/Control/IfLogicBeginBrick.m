@@ -88,12 +88,18 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![Util isEqual:self.ifElseBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifElseBrick.brickTitle])
+    if (![brick isKindOfClass:[IfLogicBeginBrick class]]) {
         return NO;
-    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifEndBrick.brickTitle])
+    }
+    if(![Util isEqual:self.ifElseBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifElseBrick.brickTitle]) {
         return NO;
-    if(![self.ifCondition isEqualToFormula:((IfLogicBeginBrick*)brick).ifCondition])
+    }
+    if(![Util isEqual:self.ifEndBrick.brickTitle toObject:((IfLogicBeginBrick*)brick).ifEndBrick.brickTitle]) {
         return NO;
+    }
+    if(![self.ifCondition isEqualToFormula:((IfLogicBeginBrick*)brick).ifCondition]) {
+        return NO;
+    }
     return YES;
 }
 

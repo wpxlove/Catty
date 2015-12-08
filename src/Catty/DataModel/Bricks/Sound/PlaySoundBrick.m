@@ -38,8 +38,12 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(![self.sound isEqualToSound:((PlaySoundBrick*)brick).sound])
+    if (![brick isKindOfClass:[PlaySoundBrick class]]) {
         return NO;
+    }
+    if(![self.sound isEqualToSound:((PlaySoundBrick*)brick).sound]) {
+        return NO;
+    }
     return YES;
 }
 

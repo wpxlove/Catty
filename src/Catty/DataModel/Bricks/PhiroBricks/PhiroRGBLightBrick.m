@@ -40,12 +40,18 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(self.redFormula !=((PhiroRGBLightBrick*)brick).redFormula)
+    if (![brick isKindOfClass:[PhiroRGBLightBrick class]]) {
         return NO;
-    if(self.greenFormula !=((PhiroRGBLightBrick*)brick).greenFormula)
+    }
+    if(self.redFormula !=((PhiroRGBLightBrick*)brick).redFormula) {
         return NO;
-    if(self.blueFormula !=((PhiroRGBLightBrick*)brick).blueFormula)
+    }
+    if(self.greenFormula !=((PhiroRGBLightBrick*)brick).greenFormula) {
         return NO;
+    }
+    if(self.blueFormula !=((PhiroRGBLightBrick*)brick).blueFormula) {
+        return NO;
+    }
     return YES;
 }
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber

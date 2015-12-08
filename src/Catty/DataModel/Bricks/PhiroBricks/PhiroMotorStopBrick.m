@@ -39,8 +39,12 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
-    if(self.motor ==((PhiroMotorStopBrick*)brick).motor)
+    if (![brick isKindOfClass:[PhiroMotorStopBrick class]]) {
+        return NO;
+    }
+    if(self.motor ==((PhiroMotorStopBrick*)brick).motor) {
         return YES;
+    }
     return NO;
 }
 

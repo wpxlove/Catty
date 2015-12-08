@@ -80,6 +80,9 @@
 
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
+    if (![brick isKindOfClass:[ChangeVariableBrick class]]) {
+        return NO;
+    }
     if (![self.userVariable isEqualToUserVariable:((ChangeVariableBrick*)brick).userVariable]) {
         return NO;
     }
