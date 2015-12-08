@@ -400,6 +400,7 @@
     return copiedObject;
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToProgram:(Program*)program
 {
     if (! [self.header isEqualToHeader:program.header])

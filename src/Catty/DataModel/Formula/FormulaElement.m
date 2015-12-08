@@ -986,6 +986,7 @@
                                                 parent:nil];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToFormulaElement:(FormulaElement*)formulaElement
 {
     if(self.type != formulaElement.type)

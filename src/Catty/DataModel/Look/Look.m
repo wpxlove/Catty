@@ -90,17 +90,22 @@
     return copiedLook;
 }
 
-#pragma mark - description
-- (NSString*)description
-{
-    return [NSString stringWithFormat:@"Name: %@\rPath: %@\r", self.name, self.fileName];
-}
-
+#pragma mark - Compare
 - (BOOL)isEqualToLook:(Look*)look
 {
     if([self.name isEqualToString:look.name] && [self.fileName isEqualToString:look.fileName])
         return YES;
     return NO;
+}
+
+- (BOOL)isEqualToString:(NSString*)name {
+    return [self.name isEqualToString:name];
+}
+
+#pragma mark - description
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"Name: %@\rPath: %@\r", self.name, self.fileName];
 }
 
 @end

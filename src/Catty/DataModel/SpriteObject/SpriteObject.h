@@ -81,5 +81,6 @@
 
 // compare
 - (BOOL)isEqualToSpriteObject:(SpriteObject*)spriteObject;
+- (BOOL)isEqualToString:(NSString*)name;
 
 @end

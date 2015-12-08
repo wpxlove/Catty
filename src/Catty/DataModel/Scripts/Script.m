@@ -132,7 +132,7 @@
     return ret;
 }
 
-#pragma mark - isEqualToScript
+#pragma mark - Compare
 - (BOOL)isEqualToScript:(Script *)script
 {
     if (self.brickCategoryType != script.brickCategoryType) {

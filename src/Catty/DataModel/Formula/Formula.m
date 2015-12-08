@@ -193,6 +193,7 @@
     }
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToFormula:(Formula*)formula
 {
     if ([self.formulaTree isEqualToFormulaElement:formula.formulaTree]) {

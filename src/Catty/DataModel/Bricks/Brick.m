@@ -116,6 +116,7 @@
                                  userInfo:nil];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToBrick:(Brick*)brick
 {
     if(self.brickCategoryType != brick.brickCategoryType)

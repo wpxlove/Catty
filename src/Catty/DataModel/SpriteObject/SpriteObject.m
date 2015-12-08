@@ -422,6 +422,10 @@
     return YES;
 }
 
+- (BOOL)isEqualToString:(NSString*)name {
+    return [self.name isEqualToString:name];
+}
+
 #pragma mark - Copy
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 {

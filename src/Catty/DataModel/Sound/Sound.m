@@ -30,11 +30,16 @@
     return [NSString stringWithFormat:@"Sound: %@\r", self.name];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToSound:(Sound*)sound
 {
     if([self.name isEqualToString:sound.name] && [self.fileName isEqualToString:sound.fileName])
         return YES;
     return NO;
+}
+
+- (BOOL)isEqualToString:(NSString*)name {
+    return [self.name isEqualToString:name];
 }
 
 #pragma mark - Copy

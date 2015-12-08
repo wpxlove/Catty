@@ -35,5 +35,6 @@
 - (id)mutableCopyWithContext:(CBMutableCopyContext*)context;
 
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable;
+- (BOOL)isEqualToString:(NSString*)name;
 
 @end

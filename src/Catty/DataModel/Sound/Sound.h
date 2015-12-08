@@ -31,5 +31,6 @@
 @property (atomic, getter = isPlaying) BOOL playing; // this property must be thread-safe!
 
 - (BOOL)isEqualToSound:(Sound*)sound;
+- (BOOL)isEqualToString:(NSString*)name;
 
 @end

@@ -36,5 +36,6 @@
 - (NSString*)previewImageFileName;
 - (NSString*)description;
 - (BOOL)isEqualToLook:(Look*)look;
+- (BOOL)isEqualToString:(NSString*)name;
 
 @end

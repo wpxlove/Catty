@@ -32,11 +32,16 @@
     return [NSString stringWithFormat:@"UserVariable: Name: %@, Value: %@", self.name, self.value ];
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToUserVariable:(UserVariable*)userVariable
 {
     if ([self.name isEqualToString:userVariable.name] && [Util isEqual:self.value toObject:userVariable.value])
         return YES;
     return NO;
+}
+
+- (BOOL)isEqualToString:(NSString*)name {
+    return [self.name isEqualToString:name];
 }
 
 #pragma mark - Copy

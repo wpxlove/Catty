@@ -82,6 +82,7 @@
     self.userHandle = nil;
 }
 
+#pragma mark - Compare
 - (BOOL)isEqualToHeader:(Header*)header
 {
     if (! [self.applicationName isEqualToString:header.applicationName])

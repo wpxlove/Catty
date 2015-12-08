@@ -172,6 +172,7 @@
         CBMutableCopyContext *context = [CBMutableCopyContext new];
         SpriteObject *copiedSpriteObject = [spriteObject mutableCopyWithContext:context];
         XCTAssertTrue([spriteObject isEqualToSpriteObject:copiedSpriteObject], "SpriteObjects are not equal");
+        XCTAssertTrue([spriteObject isEqualToString:copiedSpriteObject.name], "SpriteObject's names are not equal");
     }
 }
 
