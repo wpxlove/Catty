@@ -54,7 +54,7 @@
 #import "ActionSheetAlertViewTags.h"
 #import "RuntimeImageCache.h"
 
-@interface ScenePresenterViewController() <UIActionSheetDelegate, CatrobatAlertViewDelegate, CBScreenRecordingDelegate>
+@interface ScenePresenterViewController() <CatrobatAlertViewDelegate, CatrobatActionSheetDelegate, CBScreenRecordingDelegate>
 @property (nonatomic) BOOL menuOpen;
 @property (nonatomic) CGPoint firstGestureTouchPoint;
 @property (nonatomic) UIImage *snapshotImage;
@@ -509,11 +509,7 @@
         [self.scene stopScreenRecording];
         return;
     }
-    [self.scene startScreenRecording];
-    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
-    [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
-    [self.menuView setNeedsDisplay];
-    [self continueProgramAction:nil withDuration:0];
+    [Util actionSheetWithTitle:@"Screen Recording" delegate:self destructiveButtonTitle:nil otherButtonTitles:@[@"With Microphone",@"Without Microphone"] tag:kRecordScreenActionSheet view:nil];
 }
 
 - (void)manageAspectRatioAction:(UIButton *)sender
@@ -728,12 +724,12 @@
 #pragma mark - Animation Handling
 - (void)bounceAnimation
 {
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position.x"];
-    [animation setFromValue:[NSNumber numberWithFloat:kWidthSlideMenu/2]];
-    [animation setToValue:[NSNumber numberWithFloat:(kWidthSlideMenu/2)+(kBounceEffect/2)]];
-    [animation setDuration:.3];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.5f :1.8f :1 :1]];
-    [self.menuView.layer addAnimation:animation forKey:@"somekey"];
+//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position.x"];
+//    [animation setFromValue:[NSNumber numberWithFloat:kWidthSlideMenu/2]];
+//    [animation setToValue:[NSNumber numberWithFloat:(kWidthSlideMenu/2)+(kBounceEffect/2)]];
+//    [animation setDuration:.3];
+//    [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.5f :1.8f :1 :1]];
+//    [self.menuView.layer addAnimation:animation forKey:@"somekey"];
 }
 
 - (void)revealAnimation
@@ -810,6 +806,24 @@
         [self.parentViewController.navigationController setNavigationBarHidden:NO];
         [self.navigationController popViewControllerAnimated:YES];
     }
+    
+}
+
+- (void)actionSheet:(CatrobatAlertController*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == kRecordScreenActionSheet) {
+        if (buttonIndex == 1) {
+            [self.scene startScreenRecordingWithMicro:YES];
+        } else if (buttonIndex == 2) {
+            [self.scene startScreenRecordingWithMicro:NO];
+        }
+        
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+        [self.menuRecordButton setBackgroundImage:[UIImage imageNamed:@"pause"] forState:UIControlStateHighlighted];
+        [self.menuView setNeedsDisplay];
+        [self continueProgramAction:nil withDuration:0];
+    }
+
 }
 
 #pragma mark - CBScreenRecordingDelegate

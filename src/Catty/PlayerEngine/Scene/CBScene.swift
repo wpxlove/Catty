@@ -240,9 +240,9 @@ final class CBScene: SKScene {
         }
     }
 
-    func startScreenRecording() {
+    func startScreenRecordingWithMicro(withMicrophone:Bool) {
         if #available(iOS 9.0, *) {
-            _startScreenRecording()
+            _startScreenRecording(withMicrophone)
         }
     }
 

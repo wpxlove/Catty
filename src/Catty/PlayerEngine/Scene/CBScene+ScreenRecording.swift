@@ -26,11 +26,10 @@ import ReplayKit
 extension CBScene: RPPreviewViewControllerDelegate, RPScreenRecorderDelegate {
 
     // MARK: Start/Stop Screen Recording
-    func _startScreenRecording() {
+    func _startScreenRecording(withMicrophone:Bool) {
         if isScreenRecording { return }
-
         // Register as the recorder's delegate to handle errors.
-        RPScreenRecorder.sharedRecorder().startRecordingWithMicrophoneEnabled(true) { error in
+        RPScreenRecorder.sharedRecorder().startRecordingWithMicrophoneEnabled(withMicrophone) { error in
             if let error = error {
                 self._showScreenRecordingAlert(error.localizedDescription)
             }
