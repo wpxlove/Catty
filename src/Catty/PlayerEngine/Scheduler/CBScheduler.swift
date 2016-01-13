@@ -194,15 +194,15 @@ final class CBScheduler: CBSchedulerProtocol {
             } else {
                 _availableBufferQueues.removeFirst()
             }
-            dispatch_async(queue!, {
+            dispatch_async(queue!, { [weak self] in
                 let formulaArray = brick.getFormulas()
                 for formula:Formula in formulaArray {
                     formula.preCalculateFormulaForSprite(context.spriteNode.spriteObject)
                 }
-                print("preCalculate")
-                self._availableBufferQueues += queue!
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.runNextInstructionOfContext(context)
+                self?.logger.debug("preCalculate")
+                self?._availableBufferQueues += queue!
+                dispatch_async(dispatch_get_main_queue()) { [weak self] in
+                    self?.runNextInstructionOfContext(context)
                 }
             })
         }
