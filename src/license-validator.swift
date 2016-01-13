@@ -56,17 +56,17 @@ let licenseSearchStringTemplate = "/**\n *  Copyright (C) 2010-%@ The Catrobat T
     + " *  You should have received a copy of the GNU Affero General Public License\n"
     + " *  along with this program.  If not, see http://www.gnu.org/licenses/.\n */"
 
-let components : NSDateComponents = NSCalendar.currentCalendar().components(.Year, fromDate: NSDate())
+let components: NSDateComponents = NSCalendar.currentCalendar().components(.Year, fromDate: NSDate())
 let licenseSearchStringCurrentYear = String(format:licenseSearchStringTemplate, String(components.year))
 
 
 
-let kErrorSuccess : Int32 = 0
-let kErrorFailed : Int32 = 1
+let kErrorSuccess: Int32 = 0
+let kErrorFailed: Int32 = 1
 let fileManager = NSFileManager.defaultManager()
 
 
-enum License : String {
+enum License: String {
     case GNUAfferoGeneralPublicLicense
     case MIT
     case zlib
@@ -77,7 +77,7 @@ enum License : String {
 }
 
 
-let license3rdPartyDict : [String : License] = [
+let license3rdPartyDict: [String:License] = [
     "LLNode"  : .MIT,
     "CBStack"   : .MIT,
     "OrderedDictionary" : .zlib,
@@ -127,28 +127,29 @@ let license3rdPartyDict : [String : License] = [
     "MXScrollViewController" : .MIT,
 ]
 
-let licenseCheckDirs : [String : License] = [
+let licenseCheckDirs: [String:License] = [
     "Bohr": .MIT,
     "HMSegmentedControl" : .MIT,
     "PureLayout" : .MIT,
     "M13ProgressSuite" : .MIT,
     "MXSegmentedPager" : .MIT,
     "Target Support Files" : .MIT,
-    "VGParallaxHeader" : .MIT
-    
+    "VGParallaxHeader" : .MIT,
+    "QRCodeReader.swift": .MIT
 ]
 
-let checkDirs : [String] = [
+let checkDirs = [
     "Bohr",
     "HMSegmentedControl",
     "PureLayout",
     "M13ProgressSuite",
     "MXSegmentedPager",
     "Target Support Files",
-    "VGParallaxHeader"
+    "VGParallaxHeader",
+    "QRCodeReader.swift"
 ]
 
-let compatibleLicenses : [License] = [
+let compatibleLicenses: [License] = [
     .MIT, .zlib, .Apache2, .Apple, .BSD
 ]
 
@@ -248,10 +249,12 @@ func checkLicenses() {
     while let filePath = filePaths.nextObject() as? String {
         
         // only check source files
-        if filePath.hasSuffix(".h") == false && filePath.hasSuffix(".m") == false && filePath.hasSuffix(".swift") == false {
+        var isDirectory: ObjCBool = false
+        NSFileManager.defaultManager().fileExistsAtPath(filePath, isDirectory: &isDirectory)
+        if isDirectory || !filePath.hasSuffix(".h") && !filePath.hasSuffix(".m") && !filePath.hasSuffix(".swift") {
             continue
         }
-        
+
         checkLicenseOfFile(filePath)
     }
     
