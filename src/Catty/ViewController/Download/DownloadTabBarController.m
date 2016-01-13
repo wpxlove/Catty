@@ -26,9 +26,9 @@
 #import "UIImage+CatrobatUIImageExtensions.h"
 #import <QuartzCore/QuartzCore.h>
 #import "LanguageTranslationDefines.h"
+#import "Pocket_Code-Swift.h"
 
 @interface DownloadTabBarController ()
-
 @end
 
 @implementation DownloadTabBarController
@@ -41,9 +41,20 @@
   return self;
 }
 
+- (void)showQRCodeViewController:(id)sender {
+    UINavigationController *newNavigationVC = [UINavigationController new];
+    QRCodeReaderHandlerViewController *qrCodeReaderHandlerVC = [QRCodeReaderHandlerViewController new];
+    [newNavigationVC pushViewController:qrCodeReaderHandlerVC animated:NO];
+    [self presentViewController:newNavigationVC animated:YES completion:^{}];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIImage *qrCodeImage = [UIImage imageNamed:@"qrcode.png"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:qrCodeImage
+                                                                              style:UIBarButtonItemStylePlain
+                                                                             target:self action:@selector(showQRCodeViewController:)];
     self.navigationItem.title = kLocalizedExplore;
     self.tabBar.barTintColor = [UIColor tabBarColor];
     self.tabBar.barStyle = UIBarStyleDefault;
