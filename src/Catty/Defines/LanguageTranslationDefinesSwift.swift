@@ -33,3 +33,6 @@ let klocalizedBluetoothCannotConnect = NSLocalizedString("Cannot connect to devi
 let klocalizedBluetoothNotResponding = NSLocalizedString("Cannot connect to device. The device is not responding.", comment: "bluetooth")
 let klocalizedBluetoothConnectionLost = NSLocalizedString("Connection Lost", comment: "bluetooth")
 let klocalizedBluetoothDisconnected = NSLocalizedString( "Device disconnected.", comment: "bluetooth")
+
+let klocalizedQRCodeReader = NSLocalizedString("QR Code Reader", comment: "Title of the QR Code Reader")
+let klocalizedCancel = NSLocalizedString("Cancel", comment: "Title of the cancel button")
