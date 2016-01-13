@@ -40,9 +40,9 @@ final class CBBackend: CBBackendProtocol {
                     instructionList += _instructionForBrick(operation.brick)
                 }
             case let ifSequence as CBIfConditionalSequence:
-                instructionList += self._instructionsForIfSequence(ifSequence)
+                instructionList += _instructionsForIfSequence(ifSequence)
             case let condSequence as CBConditionalSequence:
-                instructionList += self._instructionsForLoopSequence(condSequence)
+                instructionList += _instructionsForLoopSequence(condSequence)
             default:
                 fatalError("Unknown sequence type! THIS SHOULD NEVER HAPPEN!")
             }
