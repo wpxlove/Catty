@@ -117,6 +117,8 @@
 #import "LoadingView.h"
 #import "CatrobatAlertController.h"
 #import "RuntimeImageCache.h"
+#import "FileManager.h"
+#import "AppDelegate.h"
 
 //------------------------------------------------------------------------------------------------------------
 // ViewController classes
@@ -134,4 +136,3 @@
 #import "ProgramDefines.h"
 
 #import "BrickFormulaProtocol.h"
-
