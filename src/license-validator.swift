@@ -124,7 +124,7 @@ let license3rdPartyDict: [String:License] = [
     "MXPagerViewController" : .MIT,
     "MXParallaxHeader" : .MIT,
     "MXScrollView" : .MIT,
-    "MXScrollViewController" : .MIT,
+    "MXScrollViewController" : .MIT
 ]
 
 let licenseCheckDirs: [String:License] = [
@@ -135,7 +135,9 @@ let licenseCheckDirs: [String:License] = [
     "MXSegmentedPager" : .MIT,
     "Target Support Files" : .MIT,
     "VGParallaxHeader" : .MIT,
-    "QRCodeReader.swift": .MIT
+    "QRCodeReader.swift": .MIT,
+    "SDCAlertView": .MIT,
+    "Alamofire" : .MIT
 ]
 
 let checkDirs = [
@@ -146,7 +148,9 @@ let checkDirs = [
     "MXSegmentedPager",
     "Target Support Files",
     "VGParallaxHeader",
-    "QRCodeReader.swift"
+    "QRCodeReader.swift",
+    "SDCAlertView",
+    "Alamofire"
 ]
 
 let compatibleLicenses: [License] = [
