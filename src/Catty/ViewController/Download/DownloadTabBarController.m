@@ -29,12 +29,12 @@
 #import "Pocket_Code-Swift.h"
 
 @interface DownloadTabBarController ()
+@property (nonatomic, strong) QRCodeReaderHandler *qrCodeReaderHandler;
 @end
 
 @implementation DownloadTabBarController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
   }
@@ -42,15 +42,12 @@
 }
 
 - (void)showQRCodeViewController:(id)sender {
-    UINavigationController *newNavigationVC = [UINavigationController new];
-    QRCodeReaderHandlerViewController *qrCodeReaderHandlerVC = [QRCodeReaderHandlerViewController new];
-    [newNavigationVC pushViewController:qrCodeReaderHandlerVC animated:NO];
-    [self presentViewController:newNavigationVC animated:YES completion:^{}];
+    [self.qrCodeReaderHandler showQRCodeViewController:YES];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    self.qrCodeReaderHandler = [[QRCodeReaderHandler alloc] initWithViewController:self];
     UIImage *qrCodeImage = [UIImage imageNamed:@"qrcode.png"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:qrCodeImage
                                                                               style:UIBarButtonItemStylePlain
@@ -65,11 +62,9 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
                                                         NSForegroundColorAttributeName : [UIColor backgroundColor]
                                                         } forState:UIControlStateNormal];
-  
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }
 
