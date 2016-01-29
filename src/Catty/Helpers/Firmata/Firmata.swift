@@ -71,6 +71,13 @@ enum PinMode:Int{
     case I2C
 }
 
+enum I2CMODE:UInt8{
+    case WRITE               = 0
+    case READ                = 1
+    case READ_CONTINUOUSLY   = 2
+    case STOP                = 3
+}
+
 class Firmata: FirmataProtocol {
     
     private let FIRST_DIGITAL_PIN = 3
@@ -212,7 +219,7 @@ class Firmata: FirmataProtocol {
     }
     
     
-    /* servo config
+    /* string data
     * --------------------
     * 0  START_SYSEX (0xF0)
     * 1  STRING_DATA (0x71)
@@ -457,8 +464,8 @@ class Firmata: FirmataProtocol {
     
     
         for (var i = 0; i < data.length; i++){
-            let lsb:UInt8 = bytes[i] & 0x7f;
-            let msb:UInt8 = bytes[i] >> 7  & 0x7f;
+            let lsb:UInt8 = bytes[i] & 0x7f
+            let msb:UInt8 = bytes[i] >> 7  & 0x7f
     
             let append:[UInt8] = [lsb, msb]
             newData.appendData(NSData(bytes: append, length: 2))
@@ -487,35 +494,38 @@ class Firmata: FirmataProtocol {
     * ...
     * n  END_SYSEX (0xF7)
     */
-//    func i2cRequest:(I2CMODE)i2cMode address:(unsigned short int)address data:(NSData *)data selector:(SEL)aSelector
-//    {
-//    
-//    const unsigned char first[] = {START_SYSEX, I2C_REQUEST, address, i2cMode};
-//    NSMutableData *dataToSend = [[NSMutableData alloc] initWithBytes:first length:sizeof(first)];
-//    
-//    // need to split this data into msb and lsb
-//    const unsigned char *bytes = [data bytes];
-//    
-//    for (int i = 0; i < [data length]; i++)
-//    {
-//    unsigned char lsb = bytes[i] & 0x7f;
-//    unsigned char msb = bytes[i] >> 7  & 0x7f;
-//    
-//    const unsigned char append[] = { lsb, msb };
-//    [dataToSend appendBytes:append length:sizeof(append)];
-//    }
-//    
-//    const unsigned char end[] = {END_SYSEX};
-//    [dataToSend appendBytes:end length:sizeof(end)];
-//    
-//    NSLog(@"i2cRequest bytes in hex: %@", [dataToSend description]);
-//    
-//    if(aSelector)
-//    [selectorQueue enqueue:NSStringFromSelector(aSelector)];
-//    else
-//    [selectorQueue enqueue:[[NSString alloc] init]];
-//    [currentlyDisplayingService write:dataToSend];
-//    }
+    func i2cRequest(i2cMode:I2CMODE,address:UInt8,data:NSData)
+    {
+
+        let data0:UInt8 = START_SYSEX
+        let data1:UInt8 = I2C_REQUEST
+        let data2:UInt8 = address
+        let data3:UInt8 = i2cMode.rawValue
+
+        var bytes:[UInt8] = [data0, data1, data2,data3]
+        let newData:NSMutableData = NSMutableData(bytes: bytes,length: 4)
+        
+        
+        let count = data.length / sizeof(UInt8)
+        bytes = [UInt8](count: count, repeatedValue: 0)
+        data.getBytes(&bytes, length:count * sizeof(UInt8))
+
+        for (var i = 0; i < data.length; i++){
+            let lsb:UInt8 = bytes[i] & 0x7f
+            let msb:UInt8 = bytes[i] >> 7  & 0x7f
+            
+            let append:[UInt8] = [lsb, msb]
+            newData.appendData(NSData(bytes: append, length: 2))
+        }
+
+        let data4:UInt8 = END_SYSEX
+        let append:[UInt8] = [data4]
+        newData.appendData(NSData(bytes: append, length: 1))
+
+        print("i2cRequest bytes in hex:\(newData.description)")
+    
+        delegate!.sendData(newData)
+    }
 
     
     //MARK: RECEIVE
