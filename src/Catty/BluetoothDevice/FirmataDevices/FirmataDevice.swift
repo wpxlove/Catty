@@ -50,7 +50,6 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
     
     //MARK: dicovered Characteristics
     override internal func peripheral(peri: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-        self.discoveredCharacteristics(peri, service: service, error: error)
         
         guard let characteristics = service.characteristics else {
             return
@@ -70,7 +69,7 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
                 txCharacteristic = c
                 break
             default:
-                //                    printLog(self, "didDiscoverCharacteristicsForService", "Found Characteristic: Unknown")
+                print(self, "didDiscoverCharacteristicsForService", "Found Characteristic: Unknown")
                 break
             }
             
@@ -94,7 +93,7 @@ class FirmataDevice:BluetoothDevice,FirmataDelegate {
             }
         }
         firmata.analogMappingQuery()
-        
+        self.discoveredCharacteristics(peri, service: service, error: error)
     }
     
     func rxCharacteristicUUID()->CBUUID{
