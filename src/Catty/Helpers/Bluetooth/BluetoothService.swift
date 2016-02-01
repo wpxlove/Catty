@@ -209,7 +209,13 @@ public class BluetoothService:NSObject {
                         print("SHOULD NEVER HAPPEN")
                         return
                     }
-                    BluetoothService.swiftSharedInstance.arduino = arduino
+                    switch(type){
+                    case .arduino:
+                        BluetoothService.swiftSharedInstance.arduino = bluetoothDevice as? ArduinoDevice
+                    case .phiro:
+                        BluetoothService.swiftSharedInstance.phiro = bluetoothDevice as? Phiro
+                    }
+                    
                     manager.checkStart()
                     return
                 }
