@@ -24,8 +24,16 @@ import Foundation
 import BluetoothHelper
 import CoreBluetooth
 
+protocol SelectionManagerProtocol {
+    func checkStart()
+    func deviceNotResponding()
+    func giveUpConnectionToDevice()
+    func deviceFailedConnection()
+    func deviceConnected(peripheral:Peripheral)
+    func updateWhenActive()
+}
 
-class BluetoothDevicesTableViewController:UITableViewController{
+class BluetoothDevicesTableViewController:UITableViewController,SelectionManagerProtocol{
     override func viewDidLoad() {
         self.tableView.backgroundColor = UIColor.backgroundColor()
     }

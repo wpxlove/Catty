@@ -44,7 +44,7 @@ public class BluetoothService:NSObject {
     
     var phiro:Phiro?
     var arduino:ArduinoDevice?
-    weak var selectionManager:BluetoothDevicesTableViewController?
+    var selectionManager:SelectionManagerProtocol?
     weak var scenePresenter:ScenePresenterViewController?
     var connectionTimer:NSTimer?
     var startedGame = false

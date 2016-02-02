@@ -203,6 +203,7 @@
 		922123CD1BCAEB1D008AAE45 /* FaceDetection.m in Sources */ = {isa = PBXBuildFile; fileRef = 922123CC1BCAEB1D008AAE45 /* FaceDetection.m */; };
 		92289A491A42F2A3008C771A /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A461A42F2A3008C771A /* BSKeyboardControls.m */; };
 		92289A4A1A42F2A3008C771A /* iOSCombobox.m in Sources */ = {isa = PBXBuildFile; fileRef = 92289A481A42F2A3008C771A /* iOSCombobox.m */; };
+		922BA8BE1C60A0EC002DF811 /* BluetoothServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922BA8BD1C60A0EC002DF811 /* BluetoothServiceTests.swift */; };
 		922FE8E11B963BDE005A19FA /* BrickSelectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */; };
 		922FE8E31B96430D005A19FA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 922FE8E21B96430D005A19FA /* Default-568h@2x.png */; };
 		923503901BA707DE00021F6A /* BaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9235038D1BA707DE00021F6A /* BaseLoginViewController.m */; };
@@ -1083,6 +1084,7 @@
 		92289A461A42F2A3008C771A /* BSKeyboardControls.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		92289A471A42F2A3008C771A /* iOSCombobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCombobox.h; sourceTree = "<group>"; };
 		92289A481A42F2A3008C771A /* iOSCombobox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCombobox.m; sourceTree = "<group>"; };
+		922BA8BD1C60A0EC002DF811 /* BluetoothServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothServiceTests.swift; sourceTree = "<group>"; };
 		922FE8DF1B963BDE005A19FA /* BrickSelectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickSelectionManager.h; sourceTree = "<group>"; };
 		922FE8E01B963BDE005A19FA /* BrickSelectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickSelectionManager.m; sourceTree = "<group>"; };
 		922FE8E21B96430D005A19FA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -3239,6 +3241,7 @@
 				92BCDC811BF1DE2A00F9CB23 /* Arduino */,
 				92BCDC821BF1DE2A00F9CB23 /* Firmata */,
 				92BCDC841BF1DE2A00F9CB23 /* Phiro */,
+				922BA8BD1C60A0EC002DF811 /* BluetoothServiceTests.swift */,
 			);
 			path = BluetoothDevices;
 			sourceTree = "<group>";
@@ -6101,6 +6104,7 @@
 				4C2A00C31B5546DF00CD4492 /* XMLParserObjectTests093.m in Sources */,
 				4C06A2A71C3D5F0100E9234C /* XMLParserBlackBoxTests097.m in Sources */,
 				4CEB22621B95E47500B3BE2F /* SetBrightnessBrickTests.m in Sources */,
+				922BA8BE1C60A0EC002DF811 /* BluetoothServiceTests.swift in Sources */,
 				4C68FC961B25A00B00AB3EE8 /* InternFormulaUtilsTest.m in Sources */,
 				AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */,
 				4C68FC8B1B25A00B00AB3EE8 /* FormulaFunctionsTest.m in Sources */,
