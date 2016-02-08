@@ -997,6 +997,9 @@
 /* No comment provided by engineer. */
 "Project" = "Project";
 
+/* Title of the QR Code reader used to download Scratch converted Catrobat programs from the Internet */
+"QR Code Reader" = "QR Code Reader";
+
 /* No comment provided by engineer. */
 "Rate Us" = "Rate Us";
 

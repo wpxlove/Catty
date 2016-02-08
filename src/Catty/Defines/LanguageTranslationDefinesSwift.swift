@@ -219,6 +219,7 @@ let kLocalizedSounds = NSLocalizedString("Sounds", comment: "")
 let kLocalizedLastAccess = NSLocalizedString("Last access", comment: "")
 let kLocalizedLength = NSLocalizedString("Length", comment: "")
 let kLocalizedRecord = NSLocalizedString("Record", comment: "")
+let kLocalizedStop = NSLocalizedString("Stop", comment: "")
 let kLocalizedRestart = NSLocalizedString("Restart", comment: "")
 let kLocalizedScreenshot = NSLocalizedString("Screenshot", comment: "")
 let kLocalizedAxes = NSLocalizedString("Axes", comment: "Title of icon shown in the side bar to enable or disable an overlayed view to show the origin of the coordinate system and implicitly the display size.")
@@ -595,9 +596,11 @@ let klocalizedBluetoothNotResponding = NSLocalizedString("Cannot connect to devi
 let klocalizedBluetoothConnectionLost = NSLocalizedString("Connection Lost", comment: "bluetooth")
 let klocalizedBluetoothDisconnected = NSLocalizedString("Device disconnected.", comment: "bluetooth")
 
-let klocalizedQRCodeReader = NSLocalizedString("QR Code Reader", comment: "Title of the QR Code Reader")
-let klocalizedCancel = NSLocalizedString("Cancel", comment: "Title of the cancel button")
+//************************************************************************************************************
+//************************************       QR Code Reader       ********************************************
+//************************************************************************************************************
 
+let kLocalizedQRCodeReader = NSLocalizedString("QR Code Reader", comment: "Title of the QR Code reader used to download Scratch converted Catrobat programs from the Internet")
 
 
 //************************************************************************************************************
