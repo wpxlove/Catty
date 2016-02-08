@@ -171,13 +171,17 @@ final class CBScene: SKScene {
 
     // MARK: - Start program
     func startProgram() {
-        guard let spriteObjectList = frontend?.program?.objectList as NSArray? as? [SpriteObject]
+        guard let program = frontend?.program // FIXME: After restarting a program this is nil!!
+        else { fatalError("!! No program set !!") }
+        guard let objectList = program.objectList as NSArray?
+        else { fatalError("!! Invalid object list given !! This should never happen!") }
+        guard let spriteObjectList = objectList as? [SpriteObject]
         else { fatalError("!! Invalid sprite object list given !! This should never happen!") }
         assert(NSThread.currentThread().isMainThread)
 
         removeAllChildren() // just to ensure
 
-        if #available(iOS 9, *) { // FIXME!!! detect + consider iPhone/iPad version
+        if #available(iOS 9, *) { // FIXME:!!! detect + consider iPhone/iPad version
 //            spriteObjectList = spriteObjectList.reverse()
         }
 
