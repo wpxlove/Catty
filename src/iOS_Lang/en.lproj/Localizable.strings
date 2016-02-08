@@ -40,6 +40,9 @@
 /* No comment provided by engineer. */
 "All Bluetooth devices successfully disconnected" = "All Bluetooth devices successfully disconnected";
 
+/* No comment provided by engineer. */
+"All known Bluetooth devices successfully removed" = "All known Bluetooth devices successfully removed";
+
 /* paint */
 "Alpha" = "Alpha";
 
@@ -139,6 +142,12 @@
 /* No comment provided by engineer. */
 "Cancel" = "Cancel";
 
+/* bluetooth */
+"Cannot connect to device, please try resetting the device and try again." = "Cannot connect to device, please try resetting the device and try again.";
+
+/* bluetooth */
+"Cannot connect to device. The device is not responding." = "Cannot connect to device. The device is not responding.";
+
 /* No comment provided by engineer. */
 "Categories" = "Categories";
 
@@ -173,6 +182,9 @@
 "Changes saved!" = "Changes saved!";
 
 /* No comment provided by engineer. */
+"Choose" = "Choose";
+
+/* No comment provided by engineer. */
 "Choose image" = "Choose image";
 
 /* No comment provided by engineer. */
@@ -201,6 +213,15 @@
 
 /* No comment provided by engineer. */
 "Computed result is TRUE" = "Computed result is TRUE";
+
+/* bluetooth */
+"Connection failed" = "Connection failed";
+
+/* bluetooth */
+"Connection Lost" = "Connection Lost";
+
+/* bluetooth */
+"Connection not possible" = "Connection not possible";
 
 /* No comment provided by engineer. */
 "Continue" = "Continue";
@@ -312,6 +333,9 @@
 
 /* No comment provided by engineer. */
 "Details" = "Details";
+
+/* bluetooth */
+"Device disconnected." = "Device disconnected.";
 
 /* No comment provided by engineer. */
 "direction" = "direction";
@@ -586,6 +610,9 @@
 /* No comment provided by engineer. */
 "June" = "June";
 
+/* bluetooth */
+"Known devices" = "Known devices";
+
 /* No comment provided by engineer. */
 "LA" = "LA";
 
@@ -627,6 +654,9 @@
 
 /* No comment provided by engineer. */
 "Login/Register" = "Login/Register";
+
+/* No comment provided by engineer. */
+"Look" = "Look";
 
 /* LOOK */
 "look" = "look";
@@ -895,6 +925,9 @@
 /* No comment provided by engineer. */
 "Please select a program to upload" = "Please select a program to upload";
 
+/* bluetooth */
+"Please try resetting the device and try again." = "Please try resetting the device and try again.";
+
 /* No comment provided by engineer. */
 "Pocket Code" = "Pocket Code";
 
@@ -989,6 +1022,9 @@
 "Registration successful" = "Registration successful";
 
 /* No comment provided by engineer. */
+"Remove known devices" = "Remove known devices";
+
+/* No comment provided by engineer. */
 "Rename" = "Rename";
 
 /* No comment provided by engineer. */
@@ -1055,10 +1091,19 @@
 "Screenshot saved to project" = "Screenshot saved to project";
 
 /* No comment provided by engineer. */
+"Script" = "Script";
+
+/* No comment provided by engineer. */
 "Scripts" = "Scripts";
+
+/* bluetooth */
+"Search" = "Search";
 
 /* No comment provided by engineer. */
 "Select All" = "Select All";
+
+/* bluetooth */
+"Select Arduino" = "Select Arduino";
 
 /* No comment provided by engineer. */
 "Select Brick Category" = "Select Brick Category";
@@ -1071,6 +1116,9 @@
 
 /* paint */
 "Select option:" = "Select option:";
+
+/* bluetooth */
+"Select Phiro" = "Select Phiro";
 
 /* No comment provided by engineer. */
 "Sensors" = "Sensors";
@@ -1163,6 +1211,9 @@
 "Start sound\n%@" = "Start sound\n%@";
 
 /* No comment provided by engineer. */
+"Stop" = "Stop";
+
+/* No comment provided by engineer. */
 "Stop all sounds" = "Stop all sounds";
 
 /* No comment provided by engineer. */
@@ -1179,9 +1230,6 @@
 
 /* No comment provided by engineer. */
 "Syntax Error!" = "Syntax Error!";
-
-/* No comment provided by engineer. */
-"Take" = "Take";
 
 /* No comment provided by engineer. */
 "Tap \"+\" to add %@" = "Tap \"+\" to add %@";
@@ -1301,6 +1349,9 @@
 "v" = "v";
 
 /* No comment provided by engineer. */
+"Variable" = "Variable";
+
+/* No comment provided by engineer. */
 "Variable name:" = "Variable name:";
 
 /* No comment provided by engineer. */
@@ -1343,7 +1394,7 @@
 "When tapped" = "When tapped";
 
 /* paint */
-"Width" = "Width";
+"Width selection" = "Width selection";
 
 /* No comment provided by engineer. */
 "Yes" = "Yes";

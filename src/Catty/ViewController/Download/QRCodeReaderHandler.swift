@@ -116,7 +116,7 @@ class CBQRCodeReaderViewController: QRCodeReaderViewController {
         super.viewDidLoad()
         let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("dismissViewController"))
         doneButton.tintColor = UIColor.whiteColor()
-        navigationItem.title = klocalizedQRCodeReader
+        navigationItem.title = kLocalizedQRCodeReader
         navigationItem.leftBarButtonItem = doneButton
         var frame = self.view.frame
         frame.origin.x = 0
@@ -196,7 +196,7 @@ class QRCodeReaderHandler: NSObject, QRCodeReaderViewControllerDelegate {
                 } else {
                     // Fallback on earlier versions
                 }
-                alert.addAction(AlertAction(title: klocalizedCancel, style: .Default) { action in
+                alert.addAction(AlertAction(title: kLocalizedCancel, style: .Default) { action in
                     QRCodeReaderConfig.Sound.Success.play()
                 })
                 alert.present()
@@ -206,7 +206,7 @@ class QRCodeReaderHandler: NSObject, QRCodeReaderViewControllerDelegate {
                         localPath = NSURL(fileURLWithPath: "\(NSTemporaryDirectory())temp.zip")
                         //                        let pathComponent = response.suggestedFilename
                         print(localPath)
-                        try? NSFileManager.defaultManager().removeItemAtPath(localPath!.path!)
+                        try! NSFileManager.defaultManager().removeItemAtPath(localPath!.path!)
                         return localPath!
                     })
                     .progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in

@@ -38,24 +38,19 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>3753-qrcode-{parent:e3ce20c}</string>
+	<string>3754-qrcode-{parent:6c4626a}</string>
 	<key>CatrobatApplicationName</key>
 	<string>Pocket Code (Catty iOS)</string>
 	<key>CatrobatBuildName</key>
 	<string>Catty</string>
 	<key>CatrobatLanguageVersion</key>
-	<string>0.96</string>
+	<string>0.97</string>
 	<key>CatrobatMediaLicense</key>
 	<string>http://developer.catrobat.org/ccbysa_v3</string>
 	<key>CatrobatProgramLicense</key>
 	<string>http://developer.catrobat.org/agpl_v3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
