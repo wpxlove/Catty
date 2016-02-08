@@ -32,6 +32,22 @@ final class CBScene: SKScene {
 
     // MARK: - Properties
     let logger: CBLogger?
+    static var sharedInstance: CBScene? = nil
+
+    static func getInstance(size size: CGSize, logger: CBLogger, scheduler: CBScheduler,
+        frontend: CBFrontend, backend: CBBackend, broadcastHandler: CBBroadcastHandlerProtocol
+    ) -> CBScene {
+        struct Static {
+            static var onceToken: dispatch_once_t = 0
+            static var instance: CBScene? = nil
+        }
+        dispatch_once(&Static.onceToken) {
+            Static.instance = CBScene(size: size, logger: logger, scheduler: scheduler,
+                frontend: frontend, backend: backend, broadcastHandler: broadcastHandler)
+            sharedInstance = Static.instance
+        }
+        return Static.instance!
+    }
 
     /// ReplayKit preview view controller used when viewing recorded content.
     private var _previewViewController: AnyObject?

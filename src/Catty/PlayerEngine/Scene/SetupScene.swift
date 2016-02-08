@@ -47,7 +47,7 @@ final class SetupScene: NSObject {
             CGFloat(program.header.screenHeight.floatValue)
         )
 
-        return CBScene(
+        return CBScene.getInstance(
             size: programSize,
             logger: sceneLogger,
             scheduler: scheduler,
