@@ -23,6 +23,7 @@
 final class CBSpriteNode: SKSpriteNode {
 
     // MARK: - Properties
+    var actionLock: Bool
     var spriteObject: SpriteObject?
     var currentLook: Look?
     var currentUIImageLook: UIImage?
@@ -57,6 +58,7 @@ final class CBSpriteNode: SKSpriteNode {
     // MARK: - Initializers
     required init(spriteObject: SpriteObject) {
         let color = UIColor.clearColor()
+        self.actionLock = false
         if let firstLook = spriteObject.lookList.firstObject as? Look,
            let filePathForLook = spriteObject.pathForLook(firstLook),
            let image = UIImage(contentsOfFile:filePathForLook)
@@ -77,6 +79,7 @@ final class CBSpriteNode: SKSpriteNode {
     }
 
     required override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+        self.actionLock = false
         super.init(texture: texture, color: color, size: size)
     }
 
