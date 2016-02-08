@@ -46,7 +46,7 @@ struct QRCodeReaderConfig {
         static let basePath = "/System/Library/Audio/UISounds/Modern/"
     }
 
-    static let allowedHosts = ["localhost", "192.168.178.24", "catrobat-scratch2.ist.tu-graz.ac.at", "scratch2.catrob.at"]
+    static let allowedHosts = ["localhost", "192.168.178.31", "catrobat-scratch2.ist.tu-graz.ac.at", "scratch2.catrob.at"]
     static let allowedURL: URLParts = (["http", "https"], QRCodeReaderConfig.allowedHosts, "/download", [80, 443, 8888], "id=")
 }
 
