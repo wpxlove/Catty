@@ -475,6 +475,8 @@
 - (void)unzipAndStore:(NSData*)programData withProgramID:(NSString*)programID withName:(NSString*)name
 {
     NSError *error;
+    // TODO: FIXME!!!! USE temporary ID e.g. UUID instead of constant "temp.zip" string !!!!
+    //       THIS may cause the app to crash if 2 or more downloads finish at the same time.
     NSString *tempPath = [NSString stringWithFormat:@"%@temp.zip", NSTemporaryDirectory()];
     [programData writeToFile:tempPath atomically:YES];
     if ((! programID) || (! [programID length])) {

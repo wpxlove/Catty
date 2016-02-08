@@ -121,11 +121,6 @@ class CBQRCodeReaderViewController: QRCodeReaderViewController {
         var frame = self.view.frame
         frame.origin.x = 0
         frame.origin.y = 200
-        let textLabel = UILabel(frame: frame)
-        textLabel.font = UIFont.systemFontOfSize(60.0)
-        textLabel.textColor = UIColor.blackColor()
-        textLabel.text = "Instructions:\nHello world!!!\nTest!!!"
-        textLabel.sizeToFit()
 
         let instructionButton = UIButton()
         instructionButton.translatesAutoresizingMaskIntoConstraints = false
