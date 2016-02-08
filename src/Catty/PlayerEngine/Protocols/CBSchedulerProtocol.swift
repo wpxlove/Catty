@@ -27,14 +27,14 @@ protocol CBSchedulerProtocol : class {
 
     // queries
     func isContextScheduled(context: CBScriptContextProtocol) -> Bool
-    func startWhenContextsOfSpriteNodeWithName(spriteName: String)
-    func startBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol])
 
     // registration
     func registerSpriteNode(spriteNode: CBSpriteNode)
     func registerContext(context: CBScriptContextProtocol)
 
     // events
+    func startWhenContextsOfSpriteNodeWithName(spriteName: String)
+    func scheduleBroadcastContexts(broadcastContexts: [CBBroadcastScriptContextProtocol])
     func run()
     func shutdown()
     func runNextInstructionOfContext(context: CBScriptContextProtocol)
