@@ -27,6 +27,7 @@ protocol UITestProtocol {
     func addLooksToCurrentProgramsBackgroundFromCatrobatTVAndStayAtLooksTV(numLooks: UInt)
     func addSoundsToCurrentProgramsBackgroundFromCatrobatTVAndStayAtSoundTV(numSounds: UInt)
     func dismissWelcomeScreenIfShown()
+    func enterMyFirstProgramBackgroundScriptsFormulaEditorView();
 }
 
 extension UITestProtocol {
@@ -119,4 +120,15 @@ extension UITestProtocol {
         
         app.otherElements.containingType(.NavigationBar, identifier:"Pocket Code").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button).matchingIdentifier("Skip").elementBoundByIndex(1).tap()
     }
+    
+    func enterMyFirstProgramBackgroundScriptsFormulaEditorView()
+    {
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Programs"].tap()
+        tablesQuery.staticTexts["My first program"].tap()
+        tablesQuery.staticTexts["Background"].tap()
+        tablesQuery.staticTexts["Scripts"].tap()
+    }
+    
 }

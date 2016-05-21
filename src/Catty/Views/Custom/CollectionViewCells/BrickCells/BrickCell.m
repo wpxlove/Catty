@@ -154,6 +154,7 @@
         self.opaque = NO;
         self.clipsToBounds = NO;
         self.isInserting = NO;
+        self.accessibilityIdentifier = @"Brick";
     }
     return self;
 }

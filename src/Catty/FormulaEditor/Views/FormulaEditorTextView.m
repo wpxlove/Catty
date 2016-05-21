@@ -64,6 +64,9 @@
         [[self layer] setCornerRadius:1];
         self.font = [UIFont boldSystemFontOfSize:20.0f];
         
+        //set Accessibility Identifier for UI-Tests
+        self.accessibilityIdentifier = @"FormulaEditorTextField";
+        
         self.contentInset = UIEdgeInsetsZero;
         self.textContainerInset = UIEdgeInsetsMake(TEXT_FIELD_PADDING_VERTICAL, TEXT_FIELD_PADDING_HORIZONTAL, TEXT_FIELD_PADDING_VERTICAL, TEXT_FIELD_PADDING_HORIZONTAL + BACKSPACE_WIDTH);
         

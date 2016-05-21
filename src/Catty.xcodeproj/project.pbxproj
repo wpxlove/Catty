@@ -445,6 +445,7 @@
 		92FF32BE1A24E2F400093DA7 /* BaseTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32511A24E2F400093DA7 /* BaseTransition.m */; };
 		92FF32BF1A24E2F400093DA7 /* BrickTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FF32531A24E2F400093DA7 /* BrickTransition.m */; };
 		92FF32C31A24E33B00093DA7 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FF32C21A24E33B00093DA7 /* iPhone.storyboard */; };
+		A98E18A81CF0622600734427 /* FormulaEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98E18A71CF0622600734427 /* FormulaEditorTests.swift */; };
 		A9B507291BC7EE5100A01D39 /* CatrobatTVCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */; };
 		A9F511831BE6A07A00B59540 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F511821BE6A07A00B59540 /* SwiftBridge.swift */; };
 		AA3BD9091BBF4BFB002B34A0 /* WaitBrickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */; };
@@ -1603,6 +1604,7 @@
 		92FF32C21A24E33B00093DA7 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
 		A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LooksTVCTests.swift; sourceTree = "<group>"; };
 		A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectTVCTests.swift; sourceTree = "<group>"; };
+		A98E18A71CF0622600734427 /* FormulaEditorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaEditorTests.swift; sourceTree = "<group>"; };
 		A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatrobatTVCTests.swift; sourceTree = "<group>"; };
 		A9F511821BE6A07A00B59540 /* SwiftBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		AA3BD9081BBF4BFB002B34A0 /* WaitBrickTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBrickTests.swift; sourceTree = "<group>"; };
@@ -5168,6 +5170,7 @@
 				A9B507281BC7EE5100A01D39 /* CatrobatTVCTests.swift */,
 				A988832B1BCA86FF005029E8 /* ObjectTVCTests.swift */,
 				A920EF391BCAB4ED00743FE2 /* LooksTVCTests.swift */,
+				A98E18A71CF0622600734427 /* FormulaEditorTests.swift */,
 				AAADA0081B9B29D500E0CA9A /* Info.plist */,
 			);
 			path = "Catty UITests";
@@ -6353,6 +6356,7 @@
 				A9B507291BC7EE5100A01D39 /* CatrobatTVCTests.swift in Sources */,
 				4CB1FB741BC2D74F0000A2FE /* UITestProtocol.swift in Sources */,
 				AAADA0071B9B29D500E0CA9A /* MyProgramsVCTests.swift in Sources */,
+				A98E18A81CF0622600734427 /* FormulaEditorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
