@@ -121,8 +121,7 @@ extension UITestProtocol {
         app.otherElements.containingType(.NavigationBar, identifier:"Pocket Code").childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button).matchingIdentifier("Skip").elementBoundByIndex(1).tap()
     }
     
-    func enterMyFirstProgramBackgroundScriptsFormulaEditorView()
-    {
+    func enterMyFirstProgramBackgroundScriptsFormulaEditorView() {
         let app = XCUIApplication()
         let tablesQuery = app.tables
         tablesQuery.staticTexts["Programs"].tap()
@@ -131,4 +130,40 @@ extension UITestProtocol {
         tablesQuery.staticTexts["Scripts"].tap()
     }
     
+    func formulaEditorEnterAllPossibilitiesUsingSectionElement(sectionButton: XCUIElement,
+                                            functionsToTest: Dictionary<String, String>,
+                                            visibleButtonInScrollViewIdentifier: String) {
+        enterMyFirstProgramBackgroundScriptsFormulaEditorView();
+        let app = XCUIApplication()
+        app.collectionViews.buttons[" 1 "].tap()
+        
+        let formulaTextField = app.textViews["FormulaEditorTextField"]
+        let delActiveButton = formulaTextField.buttons["del active"]
+        
+        
+        for (buttonString, textfieldString) in functionsToTest {
+            print("\n\n\n\n\n\nPressing now: \n\n\n\n\n" + buttonString)
+            sectionButton.tap()
+            let scrollView = app.scrollViews.containingType(.Button, identifier:visibleButtonInScrollViewIdentifier).element
+            scrollView.scrollToElement(app.buttons[buttonString])
+            XCTAssertTrue(app.buttons[buttonString].exists, buttonString + " should be visible but isn't!")
+            app.buttons[buttonString].tap()
+            XCTAssertEqual(textfieldString, formulaTextField.value as? String, "String in textfield is wrong!")
+            XCTAssertTrue(delActiveButton.exists, "Delete in textfield should be visible but isn't!")
+            delActiveButton.tap()
+        }
+    }
+}
+
+extension XCUIElement {
+    func scrollToElement(element: XCUIElement) {
+        while !element.visible() {
+            swipeUp()
+        }
+    }
+    
+    func visible() -> Bool{
+        guard self.exists && !CGRectIsEmpty(self.frame) else { return false }
+        return CGRectContainsRect(XCUIApplication().windows.elementBoundByIndex(0).frame, self.frame)
+    }
 }

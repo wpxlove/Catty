@@ -135,70 +135,93 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
     
     
     func testMathMode() {
-        enterMyFirstProgramBackgroundScriptsFormulaEditorView();
         let app = XCUIApplication()
-        app.collectionViews.buttons[" 1 "].tap()
-
-        let mathButton = app.buttons["Math"]
-        let formulaTextField = app.textViews["FormulaEditorTextField"]
-        let delActiveButton = formulaTextField.buttons["del active"]
+        let mathButton = app.childrenMatchingType(.Window).elementBoundByIndex(3).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button)["Math"]
+        let button = "sin"
+        let functionsToTest = ["sin":       "sin( 0 )",
+                               "cos":       "cos( 0 )",
+                               "tan":       "tan( 0 )",
+                               "ln":        "ln( 0 )",
+                               "log":       "log( 0 )",
+                               "pi":        "pi",
+                               "sqrt":      "sqrt( 0 )",
+                               "abs":       "abs( 0 )",
+                               "max":       "max( 0 , 1 )",
+                               "min":       "min( 0 , 1 )",
+                               "arcsin":    "arcsin( 0 )",
+                               "arccos":    "arccos( 0 )",
+                               "arctan":    "arctan( 0 )",
+                               "round":     "round( 0 )",
+                               "mod":       "mod( 1 , 1 )",
+                               "rand":      "rand( 0 , 1 )",
+                               "exp":       "exp( 1 )",
+                               "ceil":      "ceil( 0 )",
+                               "floor":     "floor( 0 )",
+                               "letter":    "letter( 1 , 'hello world' )",
+                               "length":    "length( 'hello world' )",
+                               "join":      "join( 'hello' , ' world' )"]
         
-        let functionsToTest = ["sin": "sin( 0 )",
-                               "cos": "cos( 0 )",
-                               "tan": "tan( 0 )",
-                               "ln": "ln( 0 )",
-                               "log": "log( 0 )",
-                               "pi": "pi",
-                               "sqrt": "sqrt( 0 )",
-                               "abs": "abs( 0 )",
-                               "max": "max( 0 , 1 )",
-                               "min": "min( 0 , 1 )",
-                               "arcsin": "arcsin( 0 )",
-                               "arccos": "arccos( 0 )",
-                               "arctan": "arctan( 0 )",
-                               "round": "round( 0 )",
-                               "mod": "mod( 1 , 1 )",
-                               "rand": "rand( 0 , 1 )",
-                               "exp": "exp( 1 )",
-                               "ceil": "ceil( 0 )",
-                               "floor": "floor( 0 )",
-                               "letter": "letter( 1 , 'hello world' )",
-                               "length": "length( 'hello world' )",
-                               "join": "join( 'hello' , ' world' )"]
-        
-
-        for (buttonString, textfieldString) in functionsToTest
-        {
-            XCTAssertTrue(mathButton.exists, "Math button is not visible but should!")
-            mathButton.tap()
-            let scrollView = app.scrollViews.containingType(.Button, identifier:"sin").element
-            scrollView.scrollToElement(app.buttons[buttonString])
-            XCTAssertTrue(app.buttons[buttonString].exists, buttonString + " should be visible but isn't!")
-            app.buttons[buttonString].tap()
-            XCTAssertEqual(textfieldString, formulaTextField.value as? String, "String in textfield is wrong!")
-            XCTAssertTrue(delActiveButton.exists, "Delete in textfield should be visible but isn't!")
-            delActiveButton.tap()
-        }
-    }
-}
-
-
-
-
-extension XCUIElement
-{
-    func scrollToElement(element: XCUIElement)
-    {
-        while !element.visible()
-        {
-            swipeUp()
-        }
+        formulaEditorEnterAllPossibilitiesUsingSectionElement(mathButton,
+                                                              functionsToTest: functionsToTest,
+                                                              visibleButtonInScrollViewIdentifier: button)
     }
     
-    func visible() -> Bool
-    {
-        guard self.exists && !CGRectIsEmpty(self.frame) else { return false }
-        return CGRectContainsRect(XCUIApplication().windows.elementBoundByIndex(0).frame, self.frame)
+    func testLogicMode(){
+        let app = XCUIApplication()
+        let logicButton = app.childrenMatchingType(.Window).elementBoundByIndex(3).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button)["Logic"]
+        
+        let button = "="
+        let functionsToTest = ["≠":     "≠",
+                               "=":     "=",
+                               "<":     "<",
+                               "≤":     "≤",
+                               ">":     ">",
+                               "≥":     "≥",
+                               "and":   "and",
+                               "or":    "or",
+                               "not":   "not",
+                               "true":  "true",
+                               "false": "false"]
+    
+        formulaEditorEnterAllPossibilitiesUsingSectionElement(logicButton,
+                                                              functionsToTest: functionsToTest,
+                                                              visibleButtonInScrollViewIdentifier: button)
+    }
+
+    func testObjectMode(){
+        let app = XCUIApplication()
+        let objectButton = app.childrenMatchingType(.Window).elementBoundByIndex(3).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button)["Object"]
+    
+        let button = "pos_x"
+        let functionsToTest = ["pos_x":         "pos_x",
+                               "pos_y":         "pos_y",
+                               "transparency":  "transparency",
+                               "brightness":    "brightness",
+                               "size":          "size",
+                               "direction":     "direction",
+                               "layer":         "layer"]
+        
+        formulaEditorEnterAllPossibilitiesUsingSectionElement(objectButton,
+                                                              functionsToTest: functionsToTest,
+                                                              visibleButtonInScrollViewIdentifier: button)
+    }
+    
+    func testSensorMode(){
+        let app = XCUIApplication()
+        let sensorButton = app.childrenMatchingType(.Window).elementBoundByIndex(3).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button)["Sensors"]
+        
+        let button = "pos_x"
+        let functionsToTest = ["acceleration_x":    "acceleration_x",
+                               "acceleration_y":    "acceleration_y",
+                               "acceleration_z":    "acceleration_z",
+                               "compass":           "compass",
+                               "inclination_x":     "inclination_x",
+                               "inclination_y":     "inclination_y",
+                               "loudness":          "loudness"]
+        
+        formulaEditorEnterAllPossibilitiesUsingSectionElement(sensorButton,
+                                                              functionsToTest: functionsToTest,
+                                                              visibleButtonInScrollViewIdentifier: button)
     }
 }
 
