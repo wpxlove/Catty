@@ -50,13 +50,17 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
         enterMyFirstProgramBackgroundScriptsFormulaEditorView();
         let app = XCUIApplication()
         
+        XCTAssertTrue(app.collectionViews.buttons[" 1 "].exists, "Formula '1' should be visible but isn't!")
         app.collectionViews.buttons[" 1 "].tap()
         
         let formulaTextField = app.textViews["FormulaEditorTextField"]
         for numberToTest in 0...9
         {
             let numberAsString = String(numberToTest)
+            XCTAssertTrue(formulaTextField.exists, "Textfield should be visible but isn't!")
             formulaTextField.tap()
+            
+            XCTAssertTrue(formulaTextField.buttons["del active"].exists, "Delete in textfield should be visible but isn't!")
             formulaTextField.buttons["del active"].tap()
             
             XCTAssertTrue(app.buttons[numberAsString].exists, "Button " + numberAsString + "does not exist here!")
@@ -84,6 +88,7 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
         formulaTextField.buttons["del active"].tap()
         for buttonString in validTestString.characters
         {
+            XCTAssertTrue(app.buttons[String(buttonString)].exists, String(buttonString) + " should be visible but isn't!")
             app.buttons[String(buttonString)].tap()
         }
         XCTAssertTrue(app.buttons["Done"].exists, "Done Button does not exist")
@@ -101,8 +106,11 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
         let invalidTestString2 = "-"
         let invalidTestString3 = "x"
         let invalidTestString4 = "/"
+        let invalidTestString5 = "8+9x9/"
+        let invalidTestString6 = "x8"
         
-        let invalidTestStrings = [invalidTestString0, invalidTestString1, invalidTestString2, invalidTestString3, invalidTestString4]
+        
+        let invalidTestStrings = [invalidTestString0, invalidTestString1, invalidTestString2, invalidTestString3, invalidTestString4, invalidTestString5, invalidTestString6]
         
         XCTAssertTrue(app.collectionViews.buttons[" 1 "].exists, "Formula containing 1 should be visible")
         app.collectionViews.buttons[" 1 "].tap()
@@ -124,4 +132,73 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
             XCTAssertTrue(app.buttons["Done"].exists, "Done worked but should not!")
         }
     }
+    
+    
+    func testMathMode() {
+        enterMyFirstProgramBackgroundScriptsFormulaEditorView();
+        let app = XCUIApplication()
+        app.collectionViews.buttons[" 1 "].tap()
+
+        let mathButton = app.buttons["Math"]
+        let formulaTextField = app.textViews["FormulaEditorTextField"]
+        let delActiveButton = formulaTextField.buttons["del active"]
+        
+        let functionsToTest = ["sin": "sin( 0 )",
+                               "cos": "cos( 0 )",
+                               "tan": "tan( 0 )",
+                               "ln": "ln( 0 )",
+                               "log": "log( 0 )",
+                               "pi": "pi",
+                               "sqrt": "sqrt( 0 )",
+                               "abs": "abs( 0 )",
+                               "max": "max( 0 , 1 )",
+                               "min": "min( 0 , 1 )",
+                               "arcsin": "arcsin( 0 )",
+                               "arccos": "arccos( 0 )",
+                               "arctan": "arctan( 0 )",
+                               "round": "round( 0 )",
+                               "mod": "mod( 1 , 1 )",
+                               "rand": "rand( 0 , 1 )",
+                               "exp": "exp( 1 )",
+                               "ceil": "ceil( 0 )",
+                               "floor": "floor( 0 )",
+                               "letter": "letter( 1 , 'hello world' )",
+                               "length": "length( 'hello world' )",
+                               "join": "join( 'hello' , ' world' )"]
+        
+
+        for (buttonString, textfieldString) in functionsToTest
+        {
+            XCTAssertTrue(mathButton.exists, "Math button is not visible but should!")
+            mathButton.tap()
+            let scrollView = app.scrollViews.containingType(.Button, identifier:"sin").element
+            scrollView.scrollToElement(app.buttons[buttonString])
+            XCTAssertTrue(app.buttons[buttonString].exists, buttonString + " should be visible but isn't!")
+            app.buttons[buttonString].tap()
+            XCTAssertEqual(textfieldString, formulaTextField.value as? String, "String in textfield is wrong!")
+            XCTAssertTrue(delActiveButton.exists, "Delete in textfield should be visible but isn't!")
+            delActiveButton.tap()
+        }
+    }
 }
+
+
+
+
+extension XCUIElement
+{
+    func scrollToElement(element: XCUIElement)
+    {
+        while !element.visible()
+        {
+            swipeUp()
+        }
+    }
+    
+    func visible() -> Bool
+    {
+        guard self.exists && !CGRectIsEmpty(self.frame) else { return false }
+        return CGRectContainsRect(XCUIApplication().windows.elementBoundByIndex(0).frame, self.frame)
+    }
+}
+
