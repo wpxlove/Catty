@@ -143,8 +143,9 @@
             NSData *blankdata = UIImagePNGRepresentation(blank);
             NSData *saveViewData = UIImagePNGRepresentation(self.saveView.image);
             if (![blankdata isEqualToData:saveViewData]) {
-                //NSData *editingData = UIImagePNGRepresentation(self.editingImage);
-                if (self.editingImage != nil && ![self.editingImage isEqual:self.saveView.image]) {
+                NSData *editingData = UIImagePNGRepresentation(self.editingImage);
+//                if (self.editingImage != nil && ![self.editingImage isEqual:self.saveView.image]) {
+                if (self.editingImage != nil && ![editingData isEqual:saveViewData]) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
                 } else if (self.editingPath == nil) {
                     [self.delegate showSavePaintImageAlert:self.saveView.image andPath:self.editingPath];
@@ -887,7 +888,6 @@
 
 - (void)saveAction
 {
-    PHAuthorizationStatus statusCameraRoll = [PHPhotoLibrary authorizationStatus];
     UIAlertController *alertControllerCameraRoll = [UIAlertController
                                                     alertControllerWithTitle:nil
                                                     message:kLocalizedNoAccesToImagesCheckSettingsDescription
@@ -917,22 +917,21 @@
     [alertControllerCameraRoll addAction:cancelAction];
     [alertControllerCameraRoll addAction:settingsAction];
     
+    //Check user authorisation and save if authorised
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        if([self checkUserAuthorisation])
-        {
-            if (statusCameraRoll == PHAuthorizationStatusAuthorized) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            if (status == PHAuthorizationStatusAuthorized) {
                 UIImageWriteToSavedPhotosAlbum(self.saveView.image, nil, nil, nil);
                 dispatch_async(dispatch_get_main_queue(), ^{
-                   [self showSavedView];
+                    [self showSavedView];
+                    NSDebug(@"saved to Camera Roll");
                 });
-            }else
-            {
+            } else {
                 [self presentViewController:alertControllerCameraRoll animated:YES completion:nil];
             }
-        }
+        }];
     });
-
-    NSDebug(@"saved to Camera Roll");
+    
 }
 
 - (void)showSavedView
@@ -1017,36 +1016,6 @@
     NSLog(@"dealloc");
 }
 
-- (BOOL)checkUserAuthorisation
-{
-    BOOL state = NO;
-    if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusNotDetermined) {
-        
-        PHFetchOptions *allPhotosOptions = [PHFetchOptions new];
-        allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
-        
-        PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:allPhotosOptions];
-        [allPhotosResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
-            NSDebug(@"asset %@", asset);
-            if (*stop) {
-//                if ([self.delegate respondsToSelector:@selector(addPaintedImage:andPath:)]) {
-//                    UIGraphicsBeginImageContextWithOptions(self.saveView.frame.size, NO, 0.0);
-//                    UIImage *blank = UIGraphicsGetImageFromCurrentImageContext();
-//                    UIGraphicsEndImageContext();
-//                    if (![self.saveView.image isEqual:blank]) {
-//                        [self.delegate addPaintedImage:self.saveView.image andPath:self.editingPath];
-//                    }
-//                }
-//                [self.navigationController popViewControllerAnimated:YES];
-                return;
-            }
-            *stop = TRUE;
-        }];
-    }else{
-        state = YES;
-    }
-    return state;
-}
 
 #pragma mark actionsheet delegate
 
