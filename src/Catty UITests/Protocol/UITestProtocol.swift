@@ -142,7 +142,6 @@ extension UITestProtocol {
         
         
         for (buttonString, textfieldString) in functionsToTest {
-            print("\n\n\n\n\n\nPressing now: \n\n\n\n\n" + buttonString)
             sectionButton.tap()
             let scrollView = app.scrollViews.containingType(.Button, identifier:visibleButtonInScrollViewIdentifier).element
             scrollView.scrollToElement(app.buttons[buttonString])
@@ -155,9 +154,35 @@ extension UITestProtocol {
     }
 }
 
+
+extension XCUIElement {
+    func scrollToElement(element: XCUIElement)
+    {
+        while element.visible() == false
+        {
+            let app = XCUIApplication()
+            let startCoord = app.tables.element.coordinateWithNormalizedOffset(CGVector(dx: 0.5, dy: 0.5))
+            //let startCoord = app.collectionViews.element.coordinateWithNormalizedOffset(CGVector(dx: 0.5, dy: 0.5))
+            let endCoord = startCoord.coordinateWithOffset(CGVector(dx: 0.0, dy: -262));
+            startCoord.pressForDuration(0.01, thenDragToCoordinate: endCoord)
+        }
+    }
+
+    func visible() -> Bool
+    {
+        guard self.exists && self.hittable && !CGRectIsEmpty(self.frame) else
+        {
+            return false
+        }
+        
+        return CGRectContainsRect(XCUIApplication().windows.elementBoundByIndex(0).frame, self.frame)
+    }
+}
+
+/*
 extension XCUIElement {
     func scrollToElement(element: XCUIElement) {
-        while !element.visible() {
+        while !element.hittable {
             swipeUp()
         }
     }
@@ -167,3 +192,4 @@ extension XCUIElement {
         return CGRectContainsRect(XCUIApplication().windows.elementBoundByIndex(0).frame, self.frame)
     }
 }
+*/

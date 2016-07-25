@@ -5884,7 +5884,7 @@
 						TestTargetID = CADBD6D319B0E8C200C62836;
 					};
 					CADBD6D319B0E8C200C62836 = {
-						DevelopmentTeam = SAUK7AHA7S;
+						DevelopmentTeam = 8FL5R8726S;
 					};
 				};
 			};

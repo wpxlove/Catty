@@ -135,6 +135,7 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
     
     
     func testMathMode() {
+
         let app = XCUIApplication()
         let mathButton = app.childrenMatchingType(.Window).elementBoundByIndex(3).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Button)["Math"]
         let button = "sin"
