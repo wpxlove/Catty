@@ -143,8 +143,12 @@ extension UITestProtocol {
         
         for (buttonString, textfieldString) in functionsToTest {
             sectionButton.tap()
-            let scrollView = app.scrollViews.containingType(.Button, identifier:visibleButtonInScrollViewIdentifier).element
-            scrollView.scrollToElement(app.buttons[buttonString])
+            //let scrollView = app.scrollViews.containingType(.Button, identifier:visibleButtonInScrollViewIdentifier).element
+            //let scrollView = app.scrollViews.element
+            //scrollView.scrollToElement(app.buttons[buttonString])
+            if false == app.buttons[buttonString].visible() {
+                continue
+            }
             XCTAssertTrue(app.buttons[buttonString].exists, buttonString + " should be visible but isn't!")
             app.buttons[buttonString].tap()
             XCTAssertEqual(textfieldString, formulaTextField.value as? String, "String in textfield is wrong!")
@@ -156,35 +160,21 @@ extension UITestProtocol {
 
 
 extension XCUIElement {
-    func scrollToElement(element: XCUIElement)
-    {
-        while element.visible() == false
-        {
-            let app = XCUIApplication()
-            let startCoord = app.tables.element.coordinateWithNormalizedOffset(CGVector(dx: 0.5, dy: 0.5))
-            //let startCoord = app.collectionViews.element.coordinateWithNormalizedOffset(CGVector(dx: 0.5, dy: 0.5))
-            let endCoord = startCoord.coordinateWithOffset(CGVector(dx: 0.0, dy: -262));
-            startCoord.pressForDuration(0.01, thenDragToCoordinate: endCoord)
+    func scrollToElement(element: XCUIElement) -> Bool{
+        if true == element.visible() {
+            return true
         }
-    }
-
-    func visible() -> Bool
-    {
-        guard self.exists && self.hittable && !CGRectIsEmpty(self.frame) else
-        {
-            return false
-        }
-        
-        return CGRectContainsRect(XCUIApplication().windows.elementBoundByIndex(0).frame, self.frame)
-    }
-}
-
-/*
-extension XCUIElement {
-    func scrollToElement(element: XCUIElement) {
-        while !element.hittable {
+        else {
             swipeUp()
+            if true == element.visible() {
+                return true
+            }
+            swipeDown()
+            if true == element.visible() {
+                return true
+            }
         }
+        return false
     }
     
     func visible() -> Bool{
@@ -192,4 +182,4 @@ extension XCUIElement {
         return CGRectContainsRect(XCUIApplication().windows.elementBoundByIndex(0).frame, self.frame)
     }
 }
-*/
+
