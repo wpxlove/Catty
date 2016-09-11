@@ -333,6 +333,10 @@
     }
 }
 
+#define FIRST_LINE_SPACE_FROM_TOP 0.40238
+#define SECOND_LINE_SPACE_FROM_TOP 0.50442
+#define THIRD_LINE_SPACE_FROM_TOP 0.60647
+
 + (void)drawThreeLeftLinesInFrame: (CGRect*)frame fillColor: (UIColor*)fillColor strokeColor: (UIColor*)strokeColor brickHeight: (CGFloat)height
 {
     CGFloat gap = 0.0f;
@@ -349,9 +353,9 @@
         gap = 0.3 * CGRectGetHeight(*frame);
         gap = gap + ((1-0.3) * CGRectGetHeight(*frame) - smallBrick)/2.0f;
     }
-    firstLine = 0.40238 * smallBrick;
-    secondLine = 0.50442 * smallBrick;
-    thirdLine = 0.60647 * smallBrick;
+    firstLine = FIRST_LINE_SPACE_FROM_TOP * smallBrick;
+    secondLine = SECOND_LINE_SPACE_FROM_TOP * smallBrick;
+    thirdLine = THIRD_LINE_SPACE_FROM_TOP * smallBrick;
     
     //// Bezier 2 Drawing
     UIBezierPath* bezier2Path = [UIBezierPath bezierPath];
