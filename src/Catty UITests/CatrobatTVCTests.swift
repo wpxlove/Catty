@@ -141,11 +141,11 @@ class CatrobatTVCTests: XCTestCase, UITestProtocol {
         let tablesQuery = app.tables
         let newStaticText = tablesQuery.staticTexts["New"]
         let collectionViewsQuery = app.alerts["New Program"].collectionViews
-        let enterYourProgramNameHereTextField = collectionViewsQuery.textFields["Enter your program name here..."]
         let okButton = collectionViewsQuery.buttons["OK"]
         
         for i in 0...2 {
             newStaticText.tap()
+            let enterYourProgramNameHereTextField = collectionViewsQuery.textFields["Enter your program name here..."]
             enterYourProgramNameHereTextField.typeText(programNames[i])
             okButton.tap()
             app.navigationBars[programNames[i]].buttons["Pocket Code"].tap()
