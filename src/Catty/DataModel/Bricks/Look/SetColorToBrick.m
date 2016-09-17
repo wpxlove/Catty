@@ -20,29 +20,28 @@
  *  along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 
-#import "VibrationBrick.h"
+#import "SetColorToBrick.h"
+#import "Formula.h"
 #import "Script.h"
+#import "Pocket_Code-Swift.h"
 
-@implementation VibrationBrick
+@implementation SetColorToBrick
+
+@synthesize color = _color;
 
 - (Formula*)formulaForLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    return self.durationInSeconds;
+    return self.color;
 }
 
 - (void)setFormula:(Formula*)formula forLineNumber:(NSInteger)lineNumber andParameterNumber:(NSInteger)paramNumber
 {
-    self.durationInSeconds = formula;
+    self.color = formula;
 }
 
 - (NSArray*)getFormulas
 {
-    return @[self.durationInSeconds];
-}
-
-- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
-{
-    self.durationInSeconds = [[Formula alloc] initWithInteger:1];
+    return @[self.color];
 }
 
 - (BOOL)allowsStringFormula
@@ -50,21 +49,30 @@
     return NO;
 }
 
+- (void)setDefaultValuesForObject:(SpriteObject*)spriteObject
+{
+    self.color = [[Formula alloc] initWithZero];
+}
+
 - (NSString*)brickTitle
 {
-    return kLocalizedVibrateNSeconds;
+    return kLocalizedSetColor;
+}
+
+- (NSString*)pathForLook:(Look*)look
+{
+    return [NSString stringWithFormat:@"%@images/%@", [self.script.object projectPath], look.fileName];
 }
 
 #pragma mark - Description
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"VibrationBrick (%f Seconds)", [self.durationInSeconds interpretDoubleForSprite:self.script.object]];
+    return [NSString stringWithFormat:@"SetColorToBrick (%f)", [self.color interpretDoubleForSprite:self.script.object]];
 }
 
 #pragma mark - Resources
 - (NSInteger)getRequiredResources
 {
-    return kVibration|[self.durationInSeconds getRequiredResources];
+    return [self.color getRequiredResources];
 }
-
 @end

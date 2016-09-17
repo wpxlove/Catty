@@ -80,7 +80,8 @@
     @"{OBJECT}",                                                 /* point to brick     */\
     @[@"{FLOAT;range=(0,inf)}", @"{FLOAT;range=(-inf,inf)}", @"{FLOAT;range=(-inf,inf)}"], /* glide to brick     */\
     @"{INT;range=[0,inf)}",                                      /* go N steps back    */\
-    @[]                                                          /* come to front      */\
+    @[],                                                         /* come to front      */\
+    @"{FLOAT;range=(-inf,inf)}"                                  /* vibration          */\
 ]
 
 // sound bricks
@@ -89,7 +90,7 @@
     @[],                            /* stop all sounds    */\
     @"{FLOAT;range=(-inf,inf)}",    /* set volume to      */\
     @"{FLOAT;range=(-inf,inf)}",    /* change volume to   */\
-    @"{INT}"                       /* speak              */\
+    @"{INT}"                        /* speak              */\
 ]
 
 // look bricks
@@ -104,10 +105,11 @@
     @"{FLOAT;range=(-inf,inf)}",    /* change ghost effect by N */\
     @"{FLOAT;range=(-inf,inf)}",    /* set brightness           */\
     @"{FLOAT;range=(-inf,inf)}",    /* change brightness by N   */\
+    @"{FLOAT;range=(-inf,inf)}",    /* set color to             */\
+    @"{FLOAT;range=(-inf,inf)}",    /* change color by N        */\
     @[],                            /* clear graphic effect     */\
     @[],                            /* turn on flashlight       */\
-    @[],                            /* turn off flashlight      */\
-    @"{FLOAT;range=(-inf,inf)}"     /* vibration                */\
+    @[]                             /* turn off flashlight      */\
 ]
 
 // variable bricks
@@ -473,7 +475,7 @@
             CGRect inputViewFrame = remainingFrame;
 //            inputViewFrame.origin.y += kBrickInputFieldTopMargin;
 //            inputViewFrame.size.height -= (kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin);
-            inputViewFrame.origin.y += kBrickInputFieldTopMargin/(kBrickInputFieldTopMargin + kBrickInputFieldBottomMargin) * (remainingFrame.size.height - kBrickInputFieldHeight);
+            inputViewFrame.origin.y += (inputViewFrame.size.height - kBrickInputFieldHeight)/2 - 0.5;
             inputViewFrame.size.height = kBrickInputFieldHeight;
             inputViewFrame.size.width = kBrickInputFieldMinWidth;
             NSString *afterLabelParam = [params objectAtIndex:counter];
@@ -481,7 +483,6 @@
             if ([afterLabelParam rangeOfString:@"FLOAT"].location != NSNotFound || [afterLabelParam rangeOfString:@"INT"].location != NSNotFound) {
                 inputField = [[BrickCellFormulaData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"TEXT"].location != NSNotFound) {
-                inputViewFrame.origin.y = inputViewFrame.origin.y+10;
                 inputViewFrame.size.height = kBrickInputFieldHeight;
                 inputField = [[BrickCellTextData alloc] initWithFrame:inputViewFrame andBrickCell:self andLineNumber:lineNumber andParameterNumber:counter];
             } else if ([afterLabelParam rangeOfString:@"MESSAGE"].location != NSNotFound) {
