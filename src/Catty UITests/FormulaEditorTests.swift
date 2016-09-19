@@ -47,7 +47,7 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
     }
 
     func testEnterNumbers() {
-        enterMyFirstProgramBackgroundScriptsFormulaEditorView();
+        enterMyFirstProgramBackgroundScriptsFormulaEditorView()
         let app = XCUIApplication()
         
         XCTAssertTrue(app.collectionViews.buttons[" 1 "].exists, "Formula '1' should be visible but isn't!")
@@ -63,7 +63,7 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
             XCTAssertTrue(formulaTextField.buttons["del active"].exists, "Delete in textfield should be visible but isn't!")
             formulaTextField.buttons["del active"].tap()
             
-            XCTAssertTrue(app.buttons[numberAsString].exists, "Button " + numberAsString + "does not exist here!")
+            XCTAssertTrue(app.buttons[numberAsString].exists, "Button " + numberAsString + " does not exist here!")
             app.buttons[numberAsString].tap();
             XCTAssertTrue(formulaTextField.exists, "Text field doesn't exist!")
             XCTAssertEqual(numberAsString, formulaTextField.value as? String, "String in textfield is wrong!")
@@ -72,7 +72,7 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
     
     
     func testEnterValidExpression() {
-        enterMyFirstProgramBackgroundScriptsFormulaEditorView();
+        enterMyFirstProgramBackgroundScriptsFormulaEditorView()
         let app = XCUIApplication()
         
         let validTestString = "-(1+2+3+4+(-5+6)+(7+8)+9)/(-(1x2x3x4x5x6x7x8x9)-10)"
@@ -98,19 +98,17 @@ class FormulaEditorTests: XCTestCase, UITestProtocol {
     }
     
     func testEnterInvalidExpression() {
-        enterMyFirstProgramBackgroundScriptsFormulaEditorView();
+        enterMyFirstProgramBackgroundScriptsFormulaEditorView()
         let app = XCUIApplication()
         
-        let invalidTestString0 = "(1-+2)"
-        let invalidTestString1 = "++1"
-        let invalidTestString2 = "-"
-        let invalidTestString3 = "x"
-        let invalidTestString4 = "/"
-        let invalidTestString5 = "8+9x9/"
-        let invalidTestString6 = "x8"
+        let invalidTestStrings = ["(1-+2)",
+                                 "++1",
+                                 "-",
+                                 "x",
+                                 "/",
+                                 "8+9x9/",
+                                 "x8"]
         
-        
-        let invalidTestStrings = [invalidTestString0, invalidTestString1, invalidTestString2, invalidTestString3, invalidTestString4, invalidTestString5, invalidTestString6]
         
         XCTAssertTrue(app.collectionViews.buttons[" 1 "].exists, "Formula containing 1 should be visible")
         app.collectionViews.buttons[" 1 "].tap()
