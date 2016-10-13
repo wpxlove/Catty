@@ -305,8 +305,8 @@
 {
     NSDebug(@"Register started with username:%@ and password:%@ and email:%@", username, password, email);
     
-    NSString *uploadUrl = [Util isProductionServerActivated] ? kRegisterUrl : kTestRegisterUrl;
-    NSString *urlString = [NSString stringWithFormat:@"%@/%@", uploadUrl, (NSString*)kConnectionRegister];
+    NSString *registrationUrl = [Util isProductionServerActivated] ? kRegisterUrl : kTestRegisterUrl;
+    NSString *urlString = [NSString stringWithFormat:@"%@/%@", registrationUrl, (NSString*)kConnectionRegister];
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:urlString]];
