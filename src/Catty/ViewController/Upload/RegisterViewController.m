@@ -186,14 +186,18 @@
     [self.usernameField addTarget:self
                        action:@selector(textFieldShouldReturn:)
              forControlEvents:UIControlEventEditingDidEndOnExit];
-    [self.passwordField setReturnKeyType:UIReturnKeyDone];
-    [self.passwordField addTarget:self
-                           action:@selector(registerAction)
-              forControlEvents:UIControlEventEditingDidEndOnExit];
     [self.emailField setReturnKeyType:UIReturnKeyNext];
     [self.emailField addTarget:self
                         action:@selector(textFieldShouldReturn:)
               forControlEvents:UIControlEventEditingDidEndOnExit];
+    [self.passwordField setReturnKeyType:UIReturnKeyDone];
+    [self.passwordField addTarget:self
+                           action:@selector(textFieldShouldReturn:)
+                 forControlEvents:UIControlEventEditingDidEndOnExit];
+    [self.passwordConfirmationField setReturnKeyType:UIReturnKeyDone];
+    [self.passwordConfirmationField addTarget:self
+                                       action:@selector(registerAction)
+                             forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -210,12 +214,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
-{
-    UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(0, height,view.frame.size.width , 1)];
-    lineView.backgroundColor = [UIColor utilityTintColor];
-    [view addSubview:lineView];
-}
+//- (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
+//{
+//    UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(0, height,view.frame.size.width , 1)];
+//    lineView.backgroundColor = [UIColor utilityTintColor];
+//    [view addSubview:lineView];
+//}
 
 
 -(BOOL)stringContainsSpace:(NSString *)checkString
@@ -299,14 +303,19 @@
     if ([self.usernameField.text isEqualToString:@""]) {
         [Util alertWithText:kLocalizedLoginUsernameNecessary];
         return;
-    } else if (![self validPassword:self.passwordField.text]) {
-        [Util alertWithText:kLocalizedLoginPasswordNotValid];
-        return;
     } else if ([self.emailField.text isEqualToString:@""] || ![self NSStringIsValidEmail:self.emailField.text]) {
         [Util alertWithText:kLocalizedLoginEmailNotValid];
         return;
+    } else if (![self validPassword:self.passwordField.text]) {
+        [Util alertWithText:kLocalizedLoginPasswordNotValid];
+        return;
     } else if ([self stringContainsSpace:self.usernameField.text] || [self stringContainsSpace:self.passwordField.text]) {
         [Util alertWithText:kLocalizedNoWhitespaceAllowed];
+        return;
+    } else if ([self.passwordConfirmationField.text isEqualToString:@""] ||
+               ![self.passwordConfirmationField.text isEqualToString:self.passwordField.text]) {
+        [Util alertWithText:kLocalizedRegisterPasswordConfirmationNoMatch];
+        self.passwordConfirmationField.text = @"";
         return;
     }
     

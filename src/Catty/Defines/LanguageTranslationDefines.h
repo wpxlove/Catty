@@ -423,7 +423,7 @@
 #define kLocalizedLoginUsernameNecessary NSLocalizedString(@"Username is necessary!", nil)
 #define kLocalizedLoginEmailNotValid NSLocalizedString(@"Email is not valid!", nil)
 #define kLocalizedLoginPasswordNotValid NSLocalizedString(@"Password is not vaild! \n It has to contain at least 6 characters/symbols", nil)
-#define kLocalizedRegisterConfirmPasswordNoMatch NSLocalizedString(@"Password does not match the Confirm Password", nil)
+#define kLocalizedRegisterPasswordConfirmationNoMatch NSLocalizedString(@"The Password-Confirmation does not match", nil)
 #define kLocalizedUploadProgramNecessary NSLocalizedString(@"Program Name is necessary!", nil)
 #define kLocalizedTermsAgreementPart NSLocalizedString(@"By registering you agree to our", nil)
 #define kLocalizedUploadSuccessful NSLocalizedString(@"Upload successful", nil)
