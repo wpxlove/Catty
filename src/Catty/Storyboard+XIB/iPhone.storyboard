@@ -748,7 +748,7 @@
                     <navigationItem key="navigationItem" title="Pocket Code" id="vGJ-82-iau">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="yUY-xB-KT0">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Bnx-Gw-xQI">
-                                <rect key="frame" x="20" y="11" width="21" height="21"/>
+                                <rect key="frame" x="16" y="11" width="21" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="appsettings"/>
                                 <connections>
@@ -2164,11 +2164,11 @@
                                     <constraint firstItem="MIh-6B-MHA" firstAttribute="leading" secondItem="ahv-ph-6mG" secondAttribute="leadingMargin" id="3MM-0f-ii1"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="bAK-9o-YUp" secondAttribute="trailing" id="3oj-xF-Pnk"/>
                                     <constraint firstItem="Gvz-3e-Hfo" firstAttribute="leading" secondItem="ahv-ph-6mG" secondAttribute="leadingMargin" id="96g-cs-0l9"/>
-                                    <constraint firstItem="C49-jB-Ivz" firstAttribute="leading" secondItem="ahv-ph-6mG" secondAttribute="leading" id="Dn4-0u-BVP"/>
+                                    <constraint firstItem="C49-jB-Ivz" firstAttribute="leading" secondItem="ahv-ph-6mG" secondAttribute="leadingMargin" id="Dn4-0u-BVP"/>
                                     <constraint firstItem="bAK-9o-YUp" firstAttribute="height" secondItem="MIh-6B-MHA" secondAttribute="height" id="GJ5-JR-Qxm"/>
                                     <constraint firstItem="MIh-6B-MHA" firstAttribute="top" secondItem="ahv-ph-6mG" secondAttribute="top" constant="40" id="GZ4-Jg-r5t"/>
                                     <constraint firstItem="WKA-IF-rFZ" firstAttribute="top" secondItem="ahv-ph-6mG" secondAttribute="top" id="Guc-LD-1ao"/>
-                                    <constraint firstAttribute="trailing" secondItem="C49-jB-Ivz" secondAttribute="trailing" id="MqY-aj-wgI"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="C49-jB-Ivz" secondAttribute="trailing" id="MqY-aj-wgI"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="Gvz-3e-Hfo" secondAttribute="trailing" id="NiX-aN-h6W"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="MIh-6B-MHA" secondAttribute="trailing" id="Sd3-0T-E7f"/>
                                     <constraint firstItem="C49-jB-Ivz" firstAttribute="height" secondItem="MIh-6B-MHA" secondAttribute="height" id="WMC-yS-maU"/>

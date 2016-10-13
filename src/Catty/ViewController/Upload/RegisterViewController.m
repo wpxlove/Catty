@@ -126,7 +126,6 @@
     self.passwordField.leftViewMode = UITextFieldViewModeAlways;
     self.passwordField.leftView = leftView2;
 
-    
     self.emailField.backgroundColor = [UIColor whiteColor];
     self.emailField.placeholder =kLocalizedEmail;
     self.emailField.font = [UIFont fontWithName:fontName size:16.0f];
@@ -139,7 +138,6 @@
     self.emailField.leftViewMode = UITextFieldViewModeAlways;
     self.emailField.leftView = leftView3;
 
-    
     self.passwordField.backgroundColor = [UIColor whiteColor];
     self.passwordField.placeholder = kLocalizedPassword;
     if (self.password) {
@@ -150,6 +148,22 @@
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
     self.passwordField.tag = 2;
+    
+    UIImageView* leftView4 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    leftView4.image = [UIImage imageNamed:@"password"];
+    self.passwordConfirmationField.leftViewMode = UITextFieldViewModeAlways;
+    self.passwordConfirmationField.leftView = leftView4;  //Tried to reuse leftView2, but that led to problems
+    
+    self.passwordConfirmationField.backgroundColor = [UIColor whiteColor];
+    self.passwordConfirmationField.placeholder = kLocalizedConfirmPassword;
+//    if (self.password) {
+//        self.passwordConfirmationField.text = self.password;
+//    }
+    [self.passwordConfirmationField setSecureTextEntry:YES];
+    self.passwordConfirmationField.font = [UIFont fontWithName:fontName size:16.0f];
+    self.passwordConfirmationField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
+    self.passwordConfirmationField.layer.borderWidth = 1.0f;
+    self.passwordConfirmationField.tag = 2;
 
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
