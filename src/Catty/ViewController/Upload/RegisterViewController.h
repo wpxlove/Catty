@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordConfirmationField;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *password;
 
