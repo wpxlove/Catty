@@ -131,7 +131,7 @@
     self.emailField.font = [UIFont fontWithName:fontName size:16.0f];
     self.emailField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.emailField.layer.borderWidth = 1.0f;
-    self.emailField.tag = 3;
+    self.emailField.tag = 2;
 
     UIImageView* leftView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView3.image = [UIImage imageNamed:@"email"];
@@ -147,7 +147,7 @@
     self.passwordField.font = [UIFont fontWithName:fontName size:16.0f];
     self.passwordField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordField.layer.borderWidth = 1.0f;
-    self.passwordField.tag = 2;
+    self.passwordField.tag = 3;
     
     UIImageView* leftView4 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     leftView4.image = [UIImage imageNamed:@"password"];
@@ -163,7 +163,7 @@
     self.passwordConfirmationField.font = [UIFont fontWithName:fontName size:16.0f];
     self.passwordConfirmationField.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.7].CGColor;
     self.passwordConfirmationField.layer.borderWidth = 1.0f;
-    self.passwordConfirmationField.tag = 2;
+    self.passwordConfirmationField.tag = 4;
 
     self.termsOfUseButton.backgroundColor = [UIColor clearColor];
     self.termsOfUseButton.titleLabel.font = [UIFont fontWithName:boldFontName size:14.0f];
@@ -214,6 +214,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+    
 //- (void)addHorizontalLineToView:(UIView*)view andHeight:(CGFloat)height
 //{
 //    UIView *lineView =[[UIView alloc] initWithFrame:CGRectMake(0, height,view.frame.size.width , 1)];
@@ -468,12 +469,20 @@
 {
     NSString *url = kTermsOfUseURL;
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    
+    //TODO: Check for iOS Version. If iOS10+ use new call to openURL
+//    if (iOS10 or greater) {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:[NSDictionary dictionary] completionHandler:nil];
+//    } else {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//    }
 }
 
 -(void)dismissKeyboard {
     [self.usernameField resignFirstResponder];
     [self.passwordField resignFirstResponder];
     [self.emailField resignFirstResponder];
+    [self.passwordConfirmationField resignFirstResponder];
 }
 
 - (void)showLoadingView
