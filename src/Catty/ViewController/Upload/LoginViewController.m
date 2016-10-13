@@ -454,27 +454,23 @@
 -(void)openTermsOfUse
 {
     NSString *url = kTermsOfUseURL;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     
-    //TODO: Check for iOS Version. If iOS10+ use new call to openURL
-//    if (iOS10 or greater) {
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:[NSDictionary dictionary] completionHandler:nil];
-//    } else {
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-//    }
+    if (IS_OS_10_OR_LATER) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:[NSDictionary dictionary] completionHandler:nil];
+    } else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    }
 }
 
 - (void)forgotPassword
 {
     NSString *url = kRecoverPassword;
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     
-    //TODO: Check for iOS Version. If iOS10+ use new call to openURL
-//    if (iOS10 or greater) {
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:[NSDictionary dictionary] completionHandler:nil];
-//    } else {
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-//    }
+    if (IS_OS_10_OR_LATER) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url] options:[NSDictionary dictionary] completionHandler:nil];
+    } else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    }
 }
 
 #pragma mark Helpers
